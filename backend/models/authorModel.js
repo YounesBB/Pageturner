@@ -2,19 +2,15 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
-const workoutSchema = new Schema({
-  title: {
+const authorSchema = new Schema({
+  name: { //Name can perhaps be split in forName and surName
     type: String,
     required: true
   },
-  reps: {
+  birthYear: { //One could later include month and date. 
     type: Number,
-    required: true
-  }, 
-  load : {
-    type: Number,
-    required: true
+    required: false 
   }
 }, {timestamps: true })
 
-module.exports = mongoose.model('Author', workoutSchema)
+module.exports = mongoose.model('Author', authorSchema)
