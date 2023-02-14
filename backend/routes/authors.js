@@ -3,9 +3,10 @@ const Author = require('../models/authorModel')
 const {
   addAuthor,
   getAuthor,
+  getAuthorByFullName,
   getAuthors, 
-  deleteAuthor, 
-  updateAuthor
+  deleteAuthor,
+  deleteAuthorByFullName
 } = require('../controllers/authorController')
 
 const router = express.Router()
@@ -16,13 +17,17 @@ router.get('/', getAuthors)
 //GET a singel author
 router.get('/:id', getAuthor)
 
+//GET a singel author by FullName
+router.get('/fullname/:name', getAuthorByFullName)
+
 //POST a new author
 router.post('/', addAuthor)
 
 //DELETE an author 
 router.delete('/:id', deleteAuthor)
 
-//UPDATE an author
-router.patch('/:id', updateAuthor)
+//DELETE an author by FullName
+router.delete('/fullname/:name', deleteAuthorByFullName)
+
 
 module.exports = router
