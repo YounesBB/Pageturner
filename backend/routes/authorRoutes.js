@@ -1,5 +1,5 @@
 const express = require('express')
-const Author = require('../models/authorModel')
+const Author = require('../models/Author')
 const {
   addAuthor,
   getAuthor,
