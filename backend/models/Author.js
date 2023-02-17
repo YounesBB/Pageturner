@@ -15,9 +15,10 @@ const authorSchema = new Schema(
     books: [{
       type: Schema.Types.ObjectId,
       ref: 'Book',
-      required: true
+      required: false // This should be true, but I'm not sure how to handle it right now
     }]
   },
-  { timestamps: true })
+  { timestamps: true }
+)
 
 module.exports = mongoose.model('Author', authorSchema)

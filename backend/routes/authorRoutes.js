@@ -4,7 +4,7 @@ const {
   addAuthor,
   getAuthor,
   getAuthorByFullName,
-  getAuthors, 
+  getAuthors,
   deleteAuthor,
   deleteAuthorByFullName
 } = require('../controllers/authorController')
@@ -14,10 +14,10 @@ const router = express.Router()
 //GET all authors
 router.get('/', getAuthors)
 
-//GET a singel author
+//GET a single author
 router.get('/:id', getAuthor)
 
-//GET a singel author by FullName
+//GET a single author by FullName
 router.get('/fullname/:name', getAuthorByFullName)
 
 //POST a new author

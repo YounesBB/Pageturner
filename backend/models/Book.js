@@ -9,7 +9,7 @@ const bookSchema = mongoose.Schema(
         author: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Author',
-            required: true
+            required: false // This should be true, but I'm not sure how to handle it right now
         },
         releaseYear: {
             type: Number,

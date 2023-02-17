@@ -2,7 +2,8 @@ require('dotenv').config()
 
 const express = require('express')
 const mongoose = require('mongoose')
-const authorRoutes = require('./routes/authors')
+const authorRoutes = require('./routes/authorRoutes')
+const bookRoutes = require('./routes/bookRoutes')
 
 // express app
 const app = express()
@@ -23,7 +24,8 @@ app.get('/', (req, res) => {
 
 
 //means use workoutroutes when a user does a request on localhost:4000/api/workouts...
-app.use('/api/author', authorRoutes)
+app.use('/api/authors', authorRoutes)
+app.use('/api/books', bookRoutes)
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
