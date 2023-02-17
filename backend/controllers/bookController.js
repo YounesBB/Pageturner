@@ -24,8 +24,6 @@ const getAllBooks = asynHandler(async (req, res) => {
 // @access  Public
 const getBookById = asynHandler(async (req, res) => {
     const { id } = req.params
-    console.log(id)
-    console.log('-------------HERE----------------')
 
     if (!id) {
         return res.status(400).json({ message: 'Book ID required' })
