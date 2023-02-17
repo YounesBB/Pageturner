@@ -1,30 +1,30 @@
-const Author = require('../models/authorModel')
+const Author = require('../models/Author')
 const mongoose = require('mongoose')
 
 // get all authors 
 const getAuthors = async (req, res) => {
-  const authors = await Author.find({}).sort({createdAt: -1}) //find({birthYear : 1980}) hadde gitt alle født 1980. -1 = decending order
+  const authors = await Author.find({}).sort({ createdAt: -1 }) //find({birthYear : 1980}) hadde gitt alle født 1980. -1 = decending order
 
   res.status(200).json(authors)
 }
 
-// get a singel author by id
+// get a single author by id
 const getAuthor = async (req, res) => {
   //vi henter id fra req.params liste
-  const {id} = req.params
+  const { id } = req.params
 
   //den sjekker om id-en som blir sendt inn er av typen ObjectID. Example: 63ebce62470afc87f96bdec4
-  if(!mongoose.Types.ObjectId.isValid(id)){
-    return res.status(404).json({error: 'No such author'})
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: 'No such author' })
   }
 
-  const workout = await Author.findById(id)
+  const author = await Author.findById(id)
 
-  if(!workout) {
-    return res.status(404).json({error: 'No such author'})
+  if (!author) {
+    return res.status(404).json({ error: 'No such author' })
   }
 
-  res.status(200).json(workout)
+  res.status(200).json(author)
 
 
 }
@@ -36,7 +36,7 @@ const getAuthorByFullName = async (req, res) => {
   const regex = new RegExp('^' + name + '$', 'i');
 
   // Use the find() method to find all authors with the given name (case-insensitive)
-  Author.find({ name: regex }, function(error, authors) {
+  Author.find({ name: regex }, function (error, authors) {
     if (error) {
       console.error(error);
       res.status(500).send('Error retrieving authors');
@@ -79,30 +79,30 @@ const getAuthorByFullName = async (req, res) => {
 
 // add an author
 const addAuthor = async (req, res) => {
-  const {name, birthYear} = req.body
-  
+  const { name, birthYear } = req.body
+
   // add doc to db
   try {
-    const author = await Author.create({name, birthYear})
+    const author = await Author.create({ name, birthYear })
     res.status(200).json(author)
   } catch (error) {
-    res.status(400).json({error: error.message})
+    res.status(400).json({ error: error.message })
 
   }
 }
 
 // delete an author
 const deleteAuthor = async (req, res) => {
-  const {id} = req.params //vi henter id fra req.params liste
+  const { id } = req.params //vi henter id fra req.params liste
 
-  if(!mongoose.Types.ObjectId.isValid(id)){
-    return res.status(404).json({error: 'No such workout'})
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: 'No such author' })
   }
 
-  const author = await Author.findOneAndDelete({_id: id})
+  const author = await Author.findOneAndDelete({ _id: id })
 
-  if(!author) {
-    return res.status(404).json({error: 'No such author'})
+  if (!author) {
+    return res.status(404).json({ error: 'No such author' })
   }
 
   res.status(200).json(author)
@@ -112,12 +112,12 @@ const deleteAuthor = async (req, res) => {
 // delete an author by fullname
 //it is case sensetive and only deletes one author at a time. 
 const deleteAuthorByFullName = async (req, res) => {
-  const {name} = req.params //vi henter id fra req.params liste
+  const { name } = req.params //vi henter id fra req.params liste
 
-  const author = await Author.findOneAndDelete({name: name})
+  const author = await Author.findOneAndDelete({ name: name })
 
-  if(!author) {
-    return res.status(404).json({error: 'No such author'})
+  if (!author) {
+    return res.status(404).json({ error: 'No such author' })
   }
 
   res.status(200).json(author)
@@ -130,7 +130,7 @@ module.exports = {
   getAuthor,
   getAuthorByFullName,
   getAuthors,
-  addAuthor, 
+  addAuthor,
   deleteAuthor,
   deleteAuthorByFullName
 }
