@@ -1,3 +1,5 @@
+import BookList from "../components/BookList"
+
 export function Home() {
-  return <h1>Home</h1>
+  return <BookList/>
 }
