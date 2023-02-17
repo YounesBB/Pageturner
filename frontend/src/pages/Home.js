@@ -1,5 +1,5 @@
-import BookList from "../components/BookList"
-
 export function Home() {
-  return <BookList/>
+  return (
+    <h1>Home</h1>
+  );
 }
