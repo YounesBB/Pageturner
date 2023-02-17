@@ -7,7 +7,7 @@ const asynHandler = require('express-async-handler');
 // @access  Public
 const getAllBooks = asynHandler(async (req, res) => {
 
-    const books = await Book.find()
+    const books = await Book.find({}).sort({ createdAt: -1 }).exec()
 
     // If no books found
     if (!books?.length) {
@@ -23,7 +23,14 @@ const getAllBooks = asynHandler(async (req, res) => {
 // @route   GET /books/:id
 // @access  Public
 const getBookById = asynHandler(async (req, res) => {
-    const { id } = req.body
+    const { id } = req.params
+    console.log(id)
+    console.log('-------------HERE----------------')
+
+    if (!id) {
+        return res.status(400).json({ message: 'Book ID required' })
+    }
+
     const book = await Book.findById(id).exec()
     if (!book) {
         res.status(400).json({ message: 'No book found' })
@@ -36,14 +43,13 @@ const getBookById = asynHandler(async (req, res) => {
 // @access  Public
 const getBookByTitle = asynHandler(async (req, res) => {
 
-    const { title } = req.body
+    const { title } = req.params
 
     const regex = new RegExp('^' + title + '$', 'i');
-    const book = await Book.findOne({ title: regex }, () => {
-        if (!book) {
-            res.status(400).json({ message: 'No book found' })
-        }
-    })
+    const book = await Book.findOne({ title: regex }).exec()
+    if (!book) {
+        res.status(400).json({ message: 'No book found' })
+    }
 
     res.status(200).json(book)
 })
@@ -60,7 +66,7 @@ const createNewBook = asynHandler(async (req, res) => {
     }
 
     // Checking for duplicates
-    const duplicate = await Note.findOne({ title }).lean().exec()
+    const duplicate = await Book.findOne({ title }).lean().exec()
 
     if (duplicate) {
         return res.status(409).json({ message: 'Duplicate book title' })
@@ -80,7 +86,8 @@ const createNewBook = asynHandler(async (req, res) => {
 // @route   PATCH /books/:id
 // @access  Public
 const updateBook = asynHandler(async (req, res) => {
-    const { id, title, author, releaseYear, genre, description } = req.body
+    const { id } = req.params
+    const { title, author, releaseYear, genre, description } = req.body
 
     const book = await Book.findById(id).exec()
 
@@ -109,7 +116,7 @@ const updateBook = asynHandler(async (req, res) => {
 // @route   DELETE /books/:id
 // @access  Public
 const deleteBook = asynHandler(async (req, res) => {
-    const { id } = req.body
+    const { id } = req.params
 
     const book = await Book.findById(id).exec()
 

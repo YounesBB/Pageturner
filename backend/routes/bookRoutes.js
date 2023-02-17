@@ -3,13 +3,18 @@ const router = express.Router()
 const bookController = require('../controllers/bookController')
 
 
-router.route('/')
-    .get(bookController.getAllBooks)                    // Get all books
-    .get(':id', bookController.getBookById)             // Get a book by id
-    .get('title/:title', bookController.getBookByTitle) // Get a book by title
-    .post(bookController.createNewBook)                 // Create a new book
-    .patch(':id', bookController.updateBook)            // Update a book
-    .delete(':id', bookController.deleteBook)           // Delete a book
+router.get('/', bookController.getAllBooks)                  // GET all books
+
+router.get('/:id', bookController.getBookById)               // GET a book by id
+
+router.get('/title/:title', bookController.getBookByTitle)   // GET a book by title
+
+router.post('/', bookController.createNewBook)               // POST a new book
+
+router.patch('/:id', bookController.updateBook)              // PATCH a book
+
+router.delete('/:id', bookController.deleteBook)             // DELETE a book
+
 
 
 module.exports = router

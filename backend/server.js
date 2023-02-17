@@ -15,16 +15,9 @@ app.use((req, res, next) => {
   next()
 })
 
-// routes
-/* this is more basic way of defining routes
-app.get('/', (req, res) => {
-  res.json({mssg: 'Welcome to the app'})
-}) 
-*/
-
 
 //means use workoutroutes when a user does a request on localhost:4000/api/workouts...
-app.use('/api/authors', authorRoutes)
+app.use('/api/author', authorRoutes)
 app.use('/api/books', bookRoutes)
 
 // connect to db
