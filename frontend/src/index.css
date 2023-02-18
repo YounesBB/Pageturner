@@ -48,6 +48,10 @@
   margin-top: 50px;
 }
 
+#app_page h1 {
+  margin-bottom: 20px;
+}
+
 @media (max-width: 767px) {
   #app_page {
     /* Styling for mobile devices */
