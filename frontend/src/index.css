@@ -1,43 +1,56 @@
 #navbar {
-    display: flex;
-    justify-content: center; /* center the flex items horizontally */
-    align-items: center;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px green;
+  display: flex;
+  justify-content: center; /* center the flex items horizontally */
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px green;
+}
+
+#navbar ul {
+  display: flex;
+  justify-content: center; /* center the flex items horizontally */
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: large;
+}
+
+#navbar li {
+  margin: 0 20px; /* add equal margin on left and right */
+}
+
+#navbar li:last-child {
+  margin-right: 0;
+}
+
+#navbar a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+#navbar a:hover {
+  color: #000;
+}
+
+#logo {
+  width: 150px;
+  border: 2px solid white;
+}
+
+/* Style for the app page below the nav bar */
+
+#app_page {
+  margin-top: 50px;
+}
+
+@media (max-width: 767px) {
+  #app_page {
+    /* Styling for mobile devices */
+    margin-top: 30px;
   }
-  
-  #navbar ul {
-    display: flex;
-    justify-content: center; /* center the flex items horizontally */
-    align-items: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: large;
-  }
-  
-  #navbar li {
-    margin: 0 20px; /* add equal margin on left and right */
-  }
-  
-  #navbar li:last-child {
-    margin-right: 0;
-  }
-  
-  #navbar a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    transition: color 0.2s;
-  }
-  
-  #navbar a:hover {
-    color: #000;
-  }
-  #logo {
-    width: 150px;
-    border: 2px solid white;
-  }
-  
+}
