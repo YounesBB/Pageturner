@@ -2,6 +2,14 @@ import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import logo from "../logo.jpeg"
 
+const NavItem = ({link, label}) => {
+    return (
+        <div  id="navitem">
+            <Link to={link}> {label} </Link>
+        </div>
+    )
+}
+
 export const NavBar = ({ children }) => {
     return (
         <nav id="navbar">
@@ -12,10 +20,10 @@ export const NavBar = ({ children }) => {
                     </Link>
                 </li>
                 <li id="Search">
-                    <Link to="/SearchResults">Search</Link>
+                    <NavItem link="/SearchResults" label="Search"/>
                 </li>
                 <li id="newBook">
-                    <Link to="/newbook">New Book</Link>
+                    <NavItem link="/newbook" label="New Book"/>
                 </li>
             </ul>
         </nav>

@@ -37,6 +37,10 @@
   color: #000;
 }
 
+#navitem a:hover {
+  font-weight: 1000;
+}
+
 #logo {
   width: 150px;
   border: 2px solid white;
