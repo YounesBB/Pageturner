@@ -20,8 +20,10 @@ const TopList = () => {
 
     const [books, setBooks] = useState([])
 
+    // sets books from nyt list
     getNYTBooks(books => setBooks(books))
     
+    // returns header and bestseller's list from New York Times
     return (
         <div>
             <h1>New York Times Bestseller List</h1>

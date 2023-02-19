@@ -9,7 +9,6 @@ export const MyBooks = () => {
   const [books, setBooks] = useState(getBooks())
 
   const handleAddBook = (title, author, year) => {
-    console.log(`--------> Clicked ${title} ${author} ${year}`)
     const newBook = {
       title: title,
       author: author,
@@ -20,6 +19,7 @@ export const MyBooks = () => {
 
   return (
     <div>
+      <h1> My library:</h1> 
       <AddBook onAddBook={handleAddBook}/>
       <BookList books={books} />
     </div>

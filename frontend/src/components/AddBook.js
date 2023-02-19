@@ -25,6 +25,8 @@ const useStyles = makeStyles({
     },
 })
 
+//Add Book component that let's us add a book to our library when clicking 'AddBook' button
+
 export const AddBook = ({ onAddBook }) => {
     const styles = useStyles()
     const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -32,16 +34,19 @@ export const AddBook = ({ onAddBook }) => {
     const [bookAuthor, setBookAuthor] = useState('')
     const [publicationDate, setPublicationDate] = useState('')
 
+    // function that handles 'submit' button. When clicked, inputed book should be added, and dialog is closed.
     const handleSubmit = (ev) => {
         ev.preventDefault()
         onAddBook(bookTitle, bookAuthor, publicationDate)
         setIsDialogOpen(false)
     }
 
+    // function for closing dialog. Called when 'Cancel' button is clicked
     const handleDismiss = () => {
         setIsDialogOpen(false)
     }
 
+    // logic for when dialog is opened, and what dialog should display
     return (
         <>
             <Dialog modalType="modal" open={isDialogOpen}>
@@ -82,7 +87,7 @@ export const AddBook = ({ onAddBook }) => {
                 </DialogSurface>
             </Dialog>
         </>
-    )
+    );
 }
 
 

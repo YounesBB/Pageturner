@@ -2,7 +2,6 @@ import { useState } from "react"
 import { BookOpen24Regular, CalendarLtr24Regular, PersonEdit24Regular } from "@fluentui/react-icons"
 import {
     TableBody,
-    TableCell,
     TableRow,
     Table,
     TableHeader,
@@ -10,8 +9,9 @@ import {
     TableCellLayout,
 } from "@fluentui/react-components"
 
-import { AddBook } from "./AddBook"
-import { getBooks } from "../api/books"
+import { BookRow } from "./BookRow"
+
+import { ShowBookInfo } from "./ShowBookInfo"
 
 const columns = [
     { columnKey: "title", label: "Book title", icon: <BookOpen24Regular/> },
@@ -21,8 +21,25 @@ const columns = [
 
 export const BookList = ({books}) => {
 
+    const [currentBook, setCurrentBook] = useState(null)
+
+    // function that sends current book to book you click on
+    // triggers dialog to open 
+    const handleBookClick = (book) => {
+        console.log("click book", book)
+        setCurrentBook(book)
+    }
+    
+    // sets current book to null
+    // used when exiting dialog
+    const handleResetBook = () => {
+        setCurrentBook(null)
+    }
+
+    // logic for displaying list of books using a table
     return (
         <div>
+            <ShowBookInfo book={currentBook} onResetBook={handleResetBook}/>
             <Table arial-label="Default table">
                 <TableHeader>
                     <TableRow style={{ borderBottom: '2px solid rgba(0, 128, 0, 0.3)' }}>
@@ -36,13 +53,7 @@ export const BookList = ({books}) => {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {books.map((book, index) => (
-                        <TableRow key={`${index}-${book.title}`} style={{ borderBottom: '1px solid rgba(0, 128, 0, 0.2)' }}>
-                            <TableCell>{book.title}</TableCell>
-                            <TableCell>{book.author}</TableCell>
-                            <TableCell>{book.year}</TableCell>
-                        </TableRow>
-                    ))}
+                    {books.map((book, index) => <BookRow key={`${index}-${book.title}`} book={book} onBookClick={handleBookClick}/>)}
                 </TableBody>
             </Table>
         </div>

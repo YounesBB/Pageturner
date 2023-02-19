@@ -10,6 +10,8 @@ const NavItem = ({link, label}) => {
     )
 }
 
+// logic for navigation bar
+// app Logo, Search, and My Books should be displayed
 export const NavBar = ({ children }) => {
     return (
         <nav id="navbar">
@@ -22,7 +24,7 @@ export const NavBar = ({ children }) => {
                 <li id="Search">
                     <NavItem link="/search" label="Search"/>
                 </li>
-                <li id="newBook">
+                <li id="myBooks">
                     <NavItem link="/mybooks" label="My Books"/>
                 </li>
             </ul>
