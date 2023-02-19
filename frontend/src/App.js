@@ -2,22 +2,21 @@ import { Route, Routes, Link } from "react-router-dom"
 import { AppPage } from "./components/AppPage"
 import { NavBar } from "./components/NavBar"
 import { Home } from "./pages/Home"
-import { SearchResults } from "./pages/SearchResults"
-import { NewBook } from "./pages/NewBook"
-import logo from "./logo.jpeg"
+import { SearchPage } from "./pages/SearchPage"
+import { MyBooks } from "./pages/MyBooks"
 import "./index.css"
 
 
 export const App = () => {
     return (
         <>
-            <NavBar/>
+            <NavBar />
             <AppPage>
                 <Routes>
-                    <Route path="/" element={<Home/>}/>
-                    <Route path="/SearchResults" element={<SearchResults/>}/>
-                    <Route path="/newbook" element={<NewBook/>}/>
-                    <Route/>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/search" element={<SearchPage />} />
+                    <Route path="/mybooks" element={<MyBooks />} />
+                    <Route />
                 </Routes>
             </AppPage>
         </>

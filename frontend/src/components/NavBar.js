@@ -20,10 +20,10 @@ export const NavBar = ({ children }) => {
                     </Link>
                 </li>
                 <li id="Search">
-                    <NavItem link="/SearchResults" label="Search"/>
+                    <NavItem link="/search" label="Search"/>
                 </li>
                 <li id="newBook">
-                    <NavItem link="/newbook" label="New Book"/>
+                    <NavItem link="/mybooks" label="My Books"/>
                 </li>
             </ul>
         </nav>
