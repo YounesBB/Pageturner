@@ -8,6 +8,12 @@ const bookRoutes = require('./routes/bookRoutes')
 // express app
 const app = express()
 
+const cors = require('cors');
+
+// ...
+
+app.use(cors());
+
 // middleware
 app.use(express.json()) //it checks if any request that comes in has a body, if it has it is passed as req in workouts.js
 app.use((req, res, next) => {
