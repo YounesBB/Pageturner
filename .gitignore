@@ -1,3 +1,6 @@
+.idea
+backend/node_modules
 backend/.env
+frontend/node_modules
 server
 backend/node_modules
