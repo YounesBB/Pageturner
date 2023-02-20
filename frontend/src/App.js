@@ -1,39 +1,26 @@
-import { Route, Routes, Link} from "react-router-dom"
+import { Route, Routes, Link } from "react-router-dom"
+import { AppPage } from "./components/AppPage"
+import { NavBar } from "./components/NavBar"
 import { Home } from "./pages/Home"
-import { SearchResults } from "./pages/SearchResults";
-import { NewBook } from "./pages/NewBook";
-import logo from './logo.jpeg';
-import './index.css';
-
+import { SearchPage } from "./pages/SearchPage"
+import { MyBooks } from "./pages/MyBooks"
+import "./index.css"
 
 
 export const App = () => {
     return (
-    <>
-    <nav id="navbar">
-        <ul>
-            <li id ="home">
-                <Link to="/">
-                    <img src={logo} alt="Logo" id="logo"/>
-                </Link>
-            </li>
-            <li id ="Search">
-                <Link to="/SearchResults">Search</Link>
-            </li>
-            <li id="newBook">
-				<Link to="/newbook">New Book</Link>
-			</li>
-        </ul>
-    </nav>
-
-    <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/SearchResults" element={<SearchResults />} />
-        <Route path="/newbook" element={<NewBook />} />
-        <Route />
-    </Routes>
-    </>
-    );
+        <>
+            <NavBar />
+            <AppPage>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/search" element={<SearchPage />} />
+                    <Route path="/mybooks" element={<MyBooks />} />
+                    <Route />
+                </Routes>
+            </AppPage>
+        </>
+    )
 }
 
-export default App;
+export default App

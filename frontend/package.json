@@ -5,6 +5,7 @@
   "dependencies": {
     "@fluentui/react": "^8.105.9",
     "@fluentui/react-components": "^9.15.5",
+    "@fluentui/react-icons": "^2.0.194",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^12.1.5",
     "@testing-library/user-event": "^13.5.0",
