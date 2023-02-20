@@ -9,11 +9,14 @@ export const getBooks = () => {
    return books
 }
 
-export const newBook = (title, author, year) => {
+export const newBook = (title, author, year, genre, description, page_nr) => {
     return {
         title: title,
         author: author,
-        year: year
+        year: year,
+        genre: genre,
+        description: description,
+        page_nr: page_nr
       }
 }
 

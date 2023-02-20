@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from "react"
+import React, { useCallback, useState } from "react"
 import { BookList } from "../components/BookList"
 import { Search } from "../components/Search"
 import { getBooks } from "../api/books"
@@ -17,8 +17,10 @@ export const SearchPage = () => {
     }
   }
 
-  return <div>
-    <Search onSearchChange={handleSearchChange}/>
-    <BookList books={filteredBooks}/>
-  </div>
+  return (
+    <div>
+      <Search onSearchChange={handleSearchChange} />
+      <BookList books={filteredBooks} />
+    </div>
+  )
 }
