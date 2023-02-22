@@ -1,30 +1,44 @@
-import React, { useState } from "react"
-import { BookList } from "../components/BookList"
-import { getBooks } from "../api/books"
-import { AddBook } from "../components/AddBook"
-
+import React, { useState, useEffect } from "react";
+import { BookList } from "../components/BookList";
+import { getBooks } from "../api/books";
+import { AddBook } from "../components/AddBook";
 
 export const MyBooks = () => {
+  const [books, setBooks] = useState([]);
 
-  const [books, setBooks] = useState(getBooks())
-
-  const handleAddBook = (title, author, year, genre, description, page_nr) => {
+  const handleAddBook = (title, author, releaseYear, genre, description, pages) => {
     const newBook = {
       title: title,
       author: author,
-      year: year,
+      releaseYear: releaseYear,
       genre: genre,
       description: description,
-      page_nr: page_nr
+      pages: pages,
+    };
+    try {
+      setBooks([...books, newBook]);
+    } catch (error) {
+      console.error(error);
     }
-    setBooks([...books, newBook])
-  }
+  };
+
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const booksData = await getBooks();
+        setBooks(booksData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchBooks();
+  }, []);
 
   return (
     <div>
-      <h1> My library:</h1> 
-      <AddBook onAddBook={handleAddBook}/>
+      <h1>My library:</h1>
+      <AddBook onAddBook={handleAddBook} />
       <BookList books={books} />
     </div>
-  )
-}
+  );
+};

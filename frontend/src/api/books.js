@@ -12,7 +12,7 @@ export const getBooks = () => {
       // Return the books data as JSON
       //console.log("get worked")
       let books = response.data
-      //console.log(books)
+      console.log(books)
       return books;
       //return response.data;
     })
