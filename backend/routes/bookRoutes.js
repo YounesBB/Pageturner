@@ -6,7 +6,8 @@ const {
     getBookByTitle,
     createNewBook,
     updateBook,
-    deleteBook
+    deleteBook, 
+    deleteBookByTitle
   } = require('../controllers/bookController')
 
 // Get all books
@@ -26,5 +27,8 @@ router.patch('/:id', updateBook)
 
 // Delete a book
 router.delete('/:id', deleteBook)
+
+// Delete a book
+router.delete('/title/:title', deleteBookByTitle)
 
 module.exports = router
