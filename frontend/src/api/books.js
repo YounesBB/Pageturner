@@ -1,23 +1,24 @@
-import booksMockData from './books.json';
+import axios from 'axios';
 
-//using our mock data set
-let books = booksMockData
 
-//helping methods for returning books, adding a book, and creating a new book
+const baseUrl = "http://localhost:4000/api";
 
+
+////////////////////////// - It may be a good idea to change all these to async/await - //////////////////////////
 export const getBooks = () => {
-   return books
+    
+    return axios.get(`${baseUrl}/books`)
+    .then(response => {
+      // Return the books data as JSON
+      //console.log("get worked")
+      let books = response.data
+      //console.log(books)
+      return books;
+      //return response.data;
+    })
+    .catch(error => {
+      // Handle any errors
+      console.error(error);
+    });
 }
 
-export const newBook = (title, author, year) => {
-    return {
-        title: title,
-        author: author,
-        year: year
-      }
-}
-
-export const addBook = (book) => {
-    books = [...books, book]
-    return books
-}

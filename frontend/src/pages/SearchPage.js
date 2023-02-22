@@ -1,24 +1,31 @@
-import React, {useCallback, useState} from "react"
+import React, { useCallback, useState, useEffect } from "react"
 import { BookList } from "../components/BookList"
 import { Search } from "../components/Search"
 import { getBooks } from "../api/books"
 
-
 export const SearchPage = () => {
 
-  const [books, setBooks] = useState(getBooks())
-  const [filteredBooks, setFilteredBooks] = useState([])
+  const [books, setBooks] = useState([]); // initially set state to an empty array
+  const [filteredBooks, setFilteredBooks] = useState([]);
 
-  const handleSearchChange = (searchTerm) => {
+  const handleSearchChange = useCallback((searchTerm) => {
     if (searchTerm === "") {
-      setFilteredBooks([])
+      setFilteredBooks([]);
     } else {
-      setFilteredBooks(books.filter(book => book.title.toLowerCase().includes(searchTerm.toLowerCase())))
+      setFilteredBooks(books.filter(book => book.title.toLowerCase().includes(searchTerm.toLowerCase())));
     }
-  }
+  }, [books]);
 
-  return <div>
-    <Search onSearchChange={handleSearchChange}/>
-    <BookList books={filteredBooks}/>
-  </div>
+  useEffect(() => {
+    getBooks().then((books) => {
+      setBooks(books);
+    });
+  }, []); // empty dependency array to ensure it only runs once on mount
+
+  return (
+    <div>
+      <Search onSearchChange={handleSearchChange}/>
+      <BookList books={filteredBooks}/>
+    </div>
+  );
 }
