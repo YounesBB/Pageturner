@@ -8,11 +8,14 @@ export const MyBooks = () => {
 
   const [books, setBooks] = useState(getBooks())
 
-  const handleAddBook = (title, author, year) => {
+  const handleAddBook = (title, author, year, genre, description, page_nr) => {
     const newBook = {
       title: title,
       author: author,
-      year: year
+      year: year,
+      genre: genre,
+      description: description,
+      page_nr: page_nr
     }
     setBooks([...books, newBook])
   }

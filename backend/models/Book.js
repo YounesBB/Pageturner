@@ -9,7 +9,7 @@ const bookSchema = mongoose.Schema(
         author: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Author',
-            required: false // This should be true, but I'm not sure how to handle it right now
+            required: true // This should be true, but I'm not sure how to handle it right now
         },
         releaseYear: {
             type: Number,
@@ -23,6 +23,10 @@ const bookSchema = mongoose.Schema(
             type: String,
             required: true
         },
+        pages: {
+            type: Number, 
+            required: true 
+        }
     },
     { timestamps: true }
 )

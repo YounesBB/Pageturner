@@ -44,6 +44,15 @@ export const ShowBookInfo = ({ book, onResetBook }) => {
                                 <Label htmlFor={"pubdate-input"}>
                                     Publication date: <small>{book.year}</small>
                                 </Label>
+                                <Label htmlFor={"genre-input"}>
+                                    Genre: <small>{book.genre}</small>
+                                </Label>
+                                <Label htmlFor={"description-input"}>
+                                    Description: <small>{book.description}</small>
+                                </Label>
+                                <Label htmlFor={"pagenumber-input"}>
+                                    # Pages: <small>{book.page_nr}</small>
+                                </Label>
                             </DialogContent>
                             <DialogActions>
                                 <DialogTrigger disableButtonEnhancement>

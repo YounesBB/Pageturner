@@ -1,93 +1,124 @@
 
 [
-    {
-      "title": "The Second Sex",
-      "author": "Simone de Beauvoir",
-      "year": 1949
-    },
-    {
-      "title": "The Feminine Mystique",
-      "author": "Betty Friedan",
-      "year": 1963
-    },
-    {
-      "title": "The Color Purple",
-      "author": "Alice Walker",
-      "year": 1982
-    },
-    {
-      "title": "The Handmaid's Tale",
-      "author": "Margaret Atwood",
-      "year": 1985
-    },
-    {
-      "title": "A Vindication of the Rights of Woman",
-      "author": "Mary Wollstonecraft",
-      "year": 1792
-    },
-    {
-      "title": "The Bell Jar",
-      "author": "Sylvia Plath",
-      "year": 1963
-    },
-    {
-      "title": "This Bridge Called My Back",
-      "author": "Cherríe Moraga and Gloria Anzaldúa",
-      "year": 1981
-    },
-    {
-      "title": "The Argonauts",
-      "author": "Maggie Nelson",
-      "year": 2015
-    },
-    {
-      "title": "The Golden Notebook",
-      "author": "Doris Lessing",
-      "year": 1962
-    },
-    {
-      "title": "A Room of One's Own",
-      "author": "Virginia Woolf",
-      "year": 1929
-    },
-    {
-      "title": "The Bloody Chamber",
-      "author": "Angela Carter",
-      "year": 1979
-    },
-    {
-      "title": "Bad Feminist",
-      "author": "Roxane Gay",
-      "year": 2014
-    },
-    {
-      "title": "Sisterhood Is Powerful",
-      "author": "Robin Morgan",
-      "year": 1970
-    },
-    {
-      "title": "The Women's Room",
-      "author": "Marilyn French",
-      "year": 1977
-    },
-    {
-      "title": "The Bridge Poem",
-      "author": "Donna Kate Rushin",
-      "year": 1979
-    },
-    {
-      "title": "Women, Race, and Class",
-      "author": "Angela Y. Davis",
-      "year": 1981
-    },
-    {
-      "title": "The Beauty Myth",
-      "author": "Naomi Wolf",
-      "year": 1990
-    },
-    {
-      "title": "Sister Outsider",
-      "author": "Audre Lorde",
-      "year": 1984
-    }
-   ]
+  {
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "year": 1960,
+    "genre": "Fiction",
+    "description": "A powerful story of racial injustice in the Deep South, told from the perspective of a young girl coming of age.",
+    "page_nr": 336
+  },
+  {
+    "title": "1984",
+    "author": "George Orwell",
+    "year": 1949,
+    "genre": "Science Fiction",
+    "description": "A dystopian novel set in a future totalitarian society where the government controls every aspect of citizens' lives.",
+    "page_nr": 328
+  },
+  {
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "year": 1813,
+    "genre": "Romance",
+    "description": "A classic tale of love and marriage in 19th century England, featuring the independent and strong-willed Elizabeth Bennet.",
+    "page_nr": 416
+  },
+  {
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "year": 1925,
+    "genre": "Fiction",
+    "description": "A vivid portrait of the Jazz Age and the excesses of the wealthy elite, as seen through the eyes of the enigmatic Jay Gatsby.",
+    "page_nr": 180
+  },
+  {
+    "title": "The Catcher in the Rye",
+    "author": "J.D. Salinger",
+    "year": 1951,
+    "genre": "Fiction",
+    "description": "A classic coming-of-age story that explores teenage alienation, rebellion, and the search for identity.",
+    "page_nr": 224
+  },
+  {
+    "title": "The Lord of the Rings",
+    "author": "J.R.R. Tolkien",
+    "year": 1954,
+    "genre": "Fantasy",
+    "description": "A epic high fantasy novel that follows hobbit Frodo Baggins on a quest to destroy the One Ring and save Middle-earth from the Dark Lord Sauron.",
+    "page_nr": 1178
+  },
+  {
+    "title": "The Hitchhiker's Guide to the Galaxy",
+    "author": "Douglas Adams",
+    "year": 1979,
+    "genre": "Science Fiction",
+    "description": "A hilarious and irreverent science fiction comedy that follows the misadventures of human Arthur Dent and his alien friend Ford Prefect as they travel through space.",
+    "page_nr": 224
+  },
+  {
+    "title": "One Hundred Years of Solitude",
+    "author": "Gabriel Garcia Marquez",
+    "year": 1967,
+    "genre": "Magical Realism",
+    "description": "A multigenerational family saga set in the mythical town of Macondo, where the past, present, and future are all intertwined in a magical and mysterious way.",
+    "page_nr": 417
+  },
+  {
+    "title": "The Diary of a Young Girl",
+    "author": "Anne Frank",
+    "year": 1947,
+    "genre": "Autobiography",
+    "description": "The personal diary of a young Jewish girl named Anne Frank, who documented her experiences of hiding from the Nazis during World War II.",
+    "page_nr": 352
+  },
+  {
+    "title": "The Color Purple",
+    "author": "Alice Walker",
+    "year": 1982,
+    "genre": "Fiction",
+    "description": "A powerful and moving novel about a young African American woman named Celie, who overcomes abuse and oppression to find her voice and her strength.",
+    "page_number": 304
+  },
+  {
+    "title": "Beloved",
+    "author": "Toni Morrison",
+    "year": 1987,
+    "genre": "Fiction",
+    "description": "A haunting and poetic novel about a former slave named Sethe and the ghostly presence that haunts her, forcing her to confront the past and its legacy.",
+    "page_number": 321
+  },
+  {
+    "title": "Sapiens: A Brief History of Humankind",
+    "author": "Yuval Noah Harari",
+    "year": 2011,
+    "genre": "Nonfiction",
+    "description": "A fascinating and thought-provoking overview of human history, from the evolution of Homo sapiens to the present day and beyond.",
+    "page_number": 464
+  },
+  {
+    "title": "The Hunger Games",
+    "author": "Suzanne Collins",
+    "year": 2008,
+    "genre": "Science Fiction",
+    "description": "A gripping and thrilling dystopian novel set in a world where teenagers are forced to fight to the death in an annual televised event called the Hunger Games.",
+    "page_number": 374
+  },
+  {
+    "title": "The Road",
+    "author": "Cormac McCarthy",
+    "year": 2006,
+    "genre": "Fiction",
+    "description": "A post-apocalyptic novel that follows a father and son as they journey through a desolate and dangerous landscape in search of safety and a better future.",
+    "page_number": 287
+  },
+  {
+    "title": "The Alchemist",
+    "author": "Paulo Coelho",
+    "year": 1988,
+    "genre": "Fiction",
+    "description": "A mystical and inspirational novel about a young shepherd named Santiago, who embarks on a journey to find his personal legend and fulfill his destiny.",
+    "page_number": 197
+  }
+]
+
