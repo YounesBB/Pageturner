@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
+import { newBook } from "../api/books"
 import {
     Dialog,
     DialogTrigger,
@@ -37,19 +38,29 @@ export const AddBook = ({ onAddBook }) => {
     const [releaseYear, setReleaseYear] = useState('')
     const [bookGenre, setBookGenre] = useState('')
     const [bookDescription, setBookDescription] = useState('')
-    const [pages, setPages] = useState('')
+    const [pageNumber, setPageNumber] = useState('') // initially set state to an empty array
 
     // function that handles 'submit' button. When clicked, inputed book should be added, and dialog is closed.
     const handleSubmit = (ev) => {
         ev.preventDefault()
         onAddBook(bookTitle, bookAuthor, releaseYear, bookGenre, bookDescription, pages)
         setIsDialogOpen(false)
+        newBook(bookTitle, bookAuthor, publicationDate, bookGenre, bookDescription, pageNumber)
+            .then((data) => {
+                // update the books state with the new book
+                // call the onAddBook function to update the parent component's state
+            })
+            .catch((error) => {
+                console.error(error)
+            })
     }
 
     // function for closing dialog. Called when 'Cancel' button is clicked
     const handleDismiss = () => {
         setIsDialogOpen(false)
     }
+
+
 
     // logic for when dialog is opened, and what dialog should display
     return (
