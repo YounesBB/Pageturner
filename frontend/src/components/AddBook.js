@@ -38,14 +38,14 @@ export const AddBook = ({ onAddBook }) => {
     const [releaseYear, setReleaseYear] = useState('')
     const [bookGenre, setBookGenre] = useState('')
     const [bookDescription, setBookDescription] = useState('')
-    const [pageNumber, setPageNumber] = useState('') // initially set state to an empty array
+    const [pages, setPages] = useState('') // initially set state to an empty array
 
     // function that handles 'submit' button. When clicked, inputed book should be added, and dialog is closed.
     const handleSubmit = (ev) => {
         ev.preventDefault()
         onAddBook(bookTitle, bookAuthor, releaseYear, bookGenre, bookDescription, pages)
         setIsDialogOpen(false)
-        newBook(bookTitle, bookAuthor, publicationDate, bookGenre, bookDescription, pageNumber)
+        newBook(bookTitle, bookAuthor, releaseYear, bookGenre, bookDescription, pages)
             .then((data) => {
                 // update the books state with the new book
                 // call the onAddBook function to update the parent component's state
