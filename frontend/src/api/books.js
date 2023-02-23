@@ -22,3 +22,21 @@ export const getBooks = () => {
     });
 }
 
+
+export const newBook = (title, author, year, genre, desc, pages) => {
+  return axios.post(`${baseUrl}/books`, {
+      title: title,
+      author: author,
+      releaseYear: year,
+      genre: genre,
+      description: desc,
+      pages: pages
+    })
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+

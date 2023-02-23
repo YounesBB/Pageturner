@@ -20,7 +20,7 @@ export const SearchPage = () => {
     getBooks().then((books) => {
       setBooks(books);
     });
-  }, []); // empty dependency array to ensure it only runs once on mount
+  }, []); // empty dependency array to ensure it only runs once on mount (may have to change when add book functionality is added)
 
   return (
     <div>
