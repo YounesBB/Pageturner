@@ -9,7 +9,7 @@ import {
     TableCellLayout,
 } from "@fluentui/react-components"
 
-import { getNYTBooks } from "../api/nytbooks"
+import { GetNYTBooks } from "../api/nytbooks"
 
 const columns = [
     { columnKey: "title", label: ""},
@@ -21,7 +21,7 @@ const TopList = () => {
     const [books, setBooks] = useState([])
 
     // sets books from nyt list
-    getNYTBooks(books => setBooks(books))
+    GetNYTBooks(books => setBooks(books))
     
     // returns header and bestseller's list from New York Times
     return (
