@@ -14,7 +14,7 @@ export const BookRow = ({ book, onBookClick }) => {
         <TableRow style={{ borderBottom: '1px solid rgba(0, 128, 0, 0.2)' }} onClick = {handleClick}>
             <TableCell>{book.title}</TableCell>
             <TableCell>{book.author}</TableCell>
-            <TableCell>{book.year}</TableCell>
+            <TableCell>{book.releaseYear}</TableCell>
         </TableRow>
     )
 }

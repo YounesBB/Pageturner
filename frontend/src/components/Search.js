@@ -16,7 +16,7 @@ export const Search = ({ onSearchChange }) => {
             <h1> Search for a book in library:
                 <input
                 type="text"
-                placeholder="Search books"
+                placeholder="Search by title"
                 value={searchTerm}
                 onChange={handleSearchChange}
                 style = {{position: 'relative', left: '50px', width: '150px', height: '30px' }}

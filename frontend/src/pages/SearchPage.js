@@ -12,7 +12,8 @@ export const SearchPage = () => {
     if (searchTerm === "") {
       setFilteredBooks([]);
     } else {
-      setFilteredBooks(books.filter(book => book.title.toLowerCase().includes(searchTerm.toLowerCase())));
+      setFilteredBooks(books.filter(book => book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      book.author.toLowerCase().includes(searchTerm.toLowerCase())))
     }
   }, [books]);
 
