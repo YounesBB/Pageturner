@@ -41,8 +41,8 @@ export const ShowBookInfo = ({ book, onResetBook }) => {
                                 <Label htmlFor={"author-input"}>
                                     Author: <small>{book.author}</small>
                                 </Label>
-                                <Label htmlFor={"pubdate-input"}>
-                                    Publication date: <small>{book.year}</small>
+                                <Label htmlFor={"releaseYear-input"}>
+                                    Release Year: <small>{book.releaseYear}</small>
                                 </Label>
                                 <Label htmlFor={"genre-input"}>
                                     Genre: <small>{book.genre}</small>
@@ -50,8 +50,8 @@ export const ShowBookInfo = ({ book, onResetBook }) => {
                                 <Label htmlFor={"description-input"}>
                                     Description: <small>{book.description}</small>
                                 </Label>
-                                <Label htmlFor={"pagenumber-input"}>
-                                    # Pages: <small>{book.page_nr}</small>
+                                <Label htmlFor={"pages-input"}>
+                                    # Pages: <small>{book.pages}</small>
                                 </Label>
                             </DialogContent>
                             <DialogActions>

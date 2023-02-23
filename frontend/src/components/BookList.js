@@ -16,7 +16,7 @@ import { ShowBookInfo } from "./ShowBookInfo"
 const columns = [
     { columnKey: "title", label: "Book title", icon: <BookOpen24Regular/> },
     { columnKey: "author", label: "Author", icon: <PersonEdit24Regular/> },
-    { columnKey: "year", label: "Publication date", icon: <CalendarLtr24Regular/> },
+    { columnKey: "releaseYear", label: "Release Year", icon: <CalendarLtr24Regular/> },
 ]
 
 export const BookList = ({books}) => {
