@@ -35,7 +35,7 @@ export const AddBook = ({ onAddBook }) => {
     const [isDialogOpen, setIsDialogOpen] = useState(false)
     const [bookTitle, setBookTitle] = useState('')
     const [bookAuthor, setBookAuthor] = useState('')
-    const [publicationDate, setPublicationDate] = useState('')
+    const [releaseYear, setReleaseYear] = useState('')
     const [bookGenre, setBookGenre] = useState('')
     const [bookDescription, setBookDescription] = useState('')
     const [pageNumber, setPageNumber] = useState('') // initially set state to an empty array
@@ -43,7 +43,7 @@ export const AddBook = ({ onAddBook }) => {
     // function that handles 'submit' button. When clicked, inputed book should be added, and dialog is closed.
     const handleSubmit = (ev) => {
         ev.preventDefault()
-        onAddBook(bookTitle, bookAuthor, publicationDate, bookGenre, bookDescription, pageNumber)
+        onAddBook(bookTitle, bookAuthor, releaseYear, bookGenre, bookDescription, pages)
         setIsDialogOpen(false)
         newBook(bookTitle, bookAuthor, publicationDate, bookGenre, bookDescription, pageNumber)
             .then((data) => {
@@ -86,10 +86,10 @@ export const AddBook = ({ onAddBook }) => {
                                 Author
                             </Label>
                             <Input required type="author" id={"author-input"} onChange={event => setBookAuthor(event.target.value)} />
-                            <Label required htmlFor={"pubdate-input"}>
-                                Publication date
+                            <Label required htmlFor={"releaseYear-input"}>
+                                Release Year
                             </Label>
-                            <Input required type="pubdate" id={"pubdate-input"} onChange={event => setPublicationDate(event.target.value)} />
+                            <Input required type="releaseYear" id={"releaseYear-input"} onChange={event => setReleaseYear(event.target.value)} />
                             <Label required htmlFor={"genre-input"}>
                                 Genre
                             </Label>
@@ -98,10 +98,10 @@ export const AddBook = ({ onAddBook }) => {
                                 Description
                             </Label>
                             <Input required type="description" id={"description-input"} onChange={event => setBookDescription(event.target.value)} />
-                            <Label required htmlFor={"pagenumber-input"}>
-                                # Page number
+                            <Label required htmlFor={"pages-input"}>
+                                # Pages
                             </Label>
-                            <Input required type="pagenumber" id={"pagenumber-input"} onChange={event => setPageNumber(event.target.value)} />
+                            <Input required type="pages" id={"pages-input"} onChange={event => setPages(event.target.value)} />
                         </DialogContent>
                         <DialogActions>
                             <DialogTrigger disableButtonEnhancement>
