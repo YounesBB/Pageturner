@@ -38,14 +38,14 @@ export const App = () => {
     return (
         <>
             <NavBar />
-            <AppPage>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/search" element={<SearchPage />} />
-                    <Route path="/mybooks" element={<MyBooks />} />
-                    <Route />
-                </Routes>
-            </AppPage>
+                <AppPage>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/search" element={<SearchPage />} />
+                        <Route path="/mybooks" element={<MyBooks />} />
+                        <Route />
+                    </Routes>
+                </AppPage>
         </>
     )
 }

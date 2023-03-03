@@ -1,30 +1,42 @@
-
-import React, { useState } from "react"
+import { useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export const Search = ({ onSearchChange }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [searchTerm, setSearchTerm] = useState("");
 
-    const [searchTerm, setSearchTerm] = useState("")
-
-    const handleSearchChange = (event) => {
-        setSearchTerm(event.target.value)
-        onSearchChange(event.target.value)
+  useEffect(() => {
+    if (location.pathname !== "/search") {
+      navigate(location.pathname);
     }
+  }, [location.pathname, navigate]);
 
-    // returns header and search field on search page
-    return (
-        <div>
-            <h1> Search for a book in library:
-                <input
-                type="text"
-                placeholder="Search by title"
-                value={searchTerm}
-                onChange={handleSearchChange}
-                style = {{position: 'relative', left: '50px', width: '150px', height: '30px' }}
-            />
-            </h1> 
-            <br/>
-            
-        </div>
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+    onSearchChange(event.target.value);
+  
+    if (event.target.value === "") {
+      navigate('/');
+    } else {
+      navigate(`/search?query=${event.target.value}`);
+    }
+  };
+  
 
-    )
-}
+  return (
+    <div id="searchField">
+      <h1>
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search by title"
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+      </h1>
+      <br />
+    </div>
+  );
+};
+

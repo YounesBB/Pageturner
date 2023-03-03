@@ -1,32 +1,34 @@
-import React, { useCallback, useState, useEffect } from "react"
-import { BookList } from "../components/BookList"
-import { Search } from "../components/Search"
-import { getBooks } from "../api/books"
+import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { BookList } from "../components/BookList";
+import { getBooks } from "../api/books";
 
 export const SearchPage = () => {
-
-  const [books, setBooks] = useState([]); // initially set state to an empty array
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const searchTerm = queryParams.get("query") || "";
+  const [books, setBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
-
-  const handleSearchChange = useCallback((searchTerm) => {
-    if (searchTerm === "") {
-      setFilteredBooks([]);
-    } else {
-      setFilteredBooks(books.filter(book => book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      book.author.toLowerCase().includes(searchTerm.toLowerCase())))
-    }
-  }, [books]);
 
   useEffect(() => {
     getBooks().then((books) => {
       setBooks(books);
     });
-  }, []); // empty dependency array to ensure it only runs once on mount (may have to change when add book functionality is added)
+  }, []);
+
+  useEffect(() => {
+    setFilteredBooks(
+      books.filter(
+        (book) =>
+          book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          book.author.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
+  }, [books, searchTerm]);
 
   return (
-    <div>
-      <Search onSearchChange={handleSearchChange}/>
-      <BookList books={filteredBooks}/>
+    <div className="page page-enter">
+      <BookList books={filteredBooks} />
     </div>
   );
-}
+};

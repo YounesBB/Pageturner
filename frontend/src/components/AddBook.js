@@ -67,7 +67,7 @@ export const AddBook = ({ onAddBook }) => {
         <>
             <Dialog modalType="modal" open={isDialogOpen}>
                 <DialogTrigger>
-                    <CompoundButton style={{ marginBottom: "20px", backgroundColor: "rgba(0, 128, 0, 0.5)", float: "right", color: "white" }}
+                    <CompoundButton style={{ marginBottom: "20px", backgroundColor: "rgba(0, 128, 0, 0.5)", float: "right", color: "white",  }}
                         icon={<BookAdd24Regular />}
                         secondaryContent=""
                         onClick={() => setIsDialogOpen(true)}

@@ -1,4 +1,3 @@
-
 import {
     Dialog,
     DialogTrigger,
@@ -12,11 +11,19 @@ import {
     makeStyles,
 } from "@fluentui/react-components"
 
+import bookIMG from "../book-removebg-preview.png";
+
+
 const useStyles = makeStyles({
     content: {
         display: "flex",
         flexDirection: "column",
         rowGap: "10px",
+    },
+    image: {
+        width: "50px",
+        height: "auto",
+        marginBottom: "10px",
     },
 })
 
@@ -35,20 +42,21 @@ export const ShowBookInfo = ({ book, onResetBook }) => {
                         <DialogBody>
                             <DialogTitle>Book Information</DialogTitle>
                             <DialogContent className={styles.content}>
+                            <img src={bookIMG} alt="Book cover" style={{ width: "150px", height: "auto", marginLeft: "-20px" }} />
                                 <Label htmlFor={"title-input"}>
-                                    Book title: <small>{book.title}</small>
+                                    Book title: <large>{book.title}</large>
                                 </Label>
                                 <Label htmlFor={"author-input"}>
-                                    Author: <small>{book.author}</small>
+                                    Author: <large>{book.author}</large>
                                 </Label>
                                 <Label htmlFor={"releaseYear-input"}>
-                                    Release Year: <small>{book.releaseYear}</small>
+                                    Release Year: <large>{book.releaseYear}</large>
                                 </Label>
                                 <Label htmlFor={"genre-input"}>
-                                    Genre: <small>{book.genre}</small>
+                                    Genre: <large>{book.genre}</large>
                                 </Label>
                                 <Label htmlFor={"description-input"}>
-                                    Description: <small>{book.description}</small>
+                                    Description: <large>{book.description}</large>
                                 </Label>
                                 <Label htmlFor={"pages-input"}>
                                     # Pages: <small>{book.pages}</small>
