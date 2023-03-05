@@ -1,25 +1,25 @@
-import { useNavigate, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom"
+import { useState, useEffect } from "react"
 
 export const Search = ({ onSearchChange }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("")
 
   useEffect(() => {
     if (location.pathname !== "/search") {
-      navigate(location.pathname);
+      navigate(location.pathname)
     }
-  }, [location.pathname, navigate]);
+  }, [location.pathname, navigate])
 
   const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
-    onSearchChange(event.target.value);
+    setSearchTerm(event.target.value)
+    onSearchChange(event.target.value)
   
     if (event.target.value === "") {
-      navigate('/');
+      navigate('/')
     } else {
-      navigate(`/search?query=${event.target.value}`);
+      navigate(`/search?query=${event.target.value}`)
     }
   };
   
@@ -37,6 +37,6 @@ export const Search = ({ onSearchChange }) => {
       </h1>
       <br />
     </div>
-  );
-};
+  )
+}
 
