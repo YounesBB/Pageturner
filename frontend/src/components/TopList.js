@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 import {
     TableBody,
     TableCell,
@@ -9,7 +9,7 @@ import {
     TableCellLayout,
 } from "@fluentui/react-components"
 
-import axios from 'axios';
+import axios from 'axios'
 
 const columns = [
     { columnKey: "title", label: ""},
@@ -18,21 +18,21 @@ const columns = [
 
 const TopList = () => {
 
-    const [books, setBooks] = useState([]);
+    const [books, setBooks] = useState([])
 
     useEffect(() => {
-        const cachedBooks = JSON.parse(localStorage.getItem("nyt-books"));
+        const cachedBooks = JSON.parse(localStorage.getItem("nyt-books"))
         if (cachedBooks) {
-            setBooks(cachedBooks);
+            setBooks(cachedBooks)
         } else {
             axios.get("https://api.nytimes.com/svc/books/v3/lists/hardcover-fiction.json?api-key=XrCIx087EJ5sGfUCIoaM1v5dtGtGxG7H")
                 .then(response => {
-                    const booksData = response.data.results.books;
-                    localStorage.setItem("nyt-books", JSON.stringify(booksData));
-                    setBooks(booksData);
+                    const booksData = response.data.results.books
+                    localStorage.setItem("nyt-books", JSON.stringify(booksData))
+                    setBooks(booksData)
                 })
                 .catch(error => {
-                    console.error(error);
+                    console.error(error)
                 });
         }
     }, []);

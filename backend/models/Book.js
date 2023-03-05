@@ -26,6 +26,10 @@ const bookSchema = mongoose.Schema(
         pages: {
             type: Number, 
             required: true 
+        },
+        coverImage: {
+            type: String, 
+            required: true
         }
     },
     { timestamps: true }

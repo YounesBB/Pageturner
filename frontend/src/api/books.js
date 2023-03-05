@@ -23,14 +23,15 @@ export const getBooks = () => {
 }
 
 
-export const newBook = (title, author, year, genre, desc, pages) => {
+export const newBook = (title, author, year, genre, desc, pages, coverImage) => {
   return axios.post(`${baseUrl}/books`, {
       title: title,
       author: author,
       releaseYear: year,
       genre: genre,
       description: desc,
-      pages: pages
+      pages: pages,
+      coverImage: coverImage
     })
     .then(response => {
       return response.data;

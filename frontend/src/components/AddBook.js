@@ -13,10 +13,9 @@ import {
     Label,
     makeStyles,
 } from "@fluentui/react-components"
-
 import { BookAdd24Regular } from "@fluentui/react-icons"
-
 import { CompoundButton } from "@fluentui/react-components"
+import { fetchBookCover } from "../api/bookCover"
 
 const useStyles = makeStyles({
     content: {
@@ -38,14 +37,19 @@ export const AddBook = ({ onAddBook }) => {
     const [releaseYear, setReleaseYear] = useState('')
     const [bookGenre, setBookGenre] = useState('')
     const [bookDescription, setBookDescription] = useState('')
-    const [pages, setPages] = useState('') // initially set state to an empty array
+    const [pages, setPages] = useState('')
+     // initially set state to an empty array
 
     // function that handles 'submit' button. When clicked, inputed book should be added, and dialog is closed.
-    const handleSubmit = (ev) => {
+     const handleSubmit = async(ev) => {
         ev.preventDefault()
-        onAddBook(bookTitle, bookAuthor, releaseYear, bookGenre, bookDescription, pages)
+        const coverImage = await fetchBookCover(bookTitle, bookAuthor)
+        // fetchBookCovers(bookTitle, bookAuthor)
+        onAddBook(bookTitle, bookAuthor, releaseYear, bookGenre, bookDescription, pages, coverImage)
         setIsDialogOpen(false)
-        newBook(bookTitle, bookAuthor, releaseYear, bookGenre, bookDescription, pages)
+        //  const coverImage = await fetchBookCover(bookTitle, bookAuthor)
+         console.log(coverImage)
+        newBook(bookTitle, bookAuthor, releaseYear, bookGenre, bookDescription, pages, coverImage)
             .then((data) => {
                 // update the books state with the new book
                 // call the onAddBook function to update the parent component's state
@@ -61,13 +65,12 @@ export const AddBook = ({ onAddBook }) => {
     }
 
 
-
     // logic for when dialog is opened, and what dialog should display
     return (
         <>
             <Dialog modalType="modal" open={isDialogOpen}>
                 <DialogTrigger>
-                    <CompoundButton style={{ marginBottom: "20px", backgroundColor: "rgba(0, 128, 0, 0.5)", float: "right", color: "white",  }}
+                    <CompoundButton style={{ marginBottom: "20px", backgroundColor: "rgba(0, 128, 0, 0.5)", float: "right", color: "white", }}
                         icon={<BookAdd24Regular />}
                         secondaryContent=""
                         onClick={() => setIsDialogOpen(true)}

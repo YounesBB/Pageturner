@@ -21,6 +21,7 @@ const getAllBooks = asynHandler(async (req, res) => {
             genre: book.genre,
             description: book.description,
             pages: book.pages,
+            coverImage: book.coverImage,
             createdAt: book.createdAt,
             updatedAt: book.updatedAt,
             __v: book.__v
@@ -76,6 +77,7 @@ const getBookById = asynHandler(async (req, res) => {
           genre: book.genre,
           description: book.description,
           pages: book.pages,
+          coverImage: book.coverImage,
           createdAt: book.createdAt,
           updatedAt: book.updatedAt,
           __v: book.__v
@@ -109,6 +111,7 @@ const getBookByTitle = asynHandler(async (req, res) => {
         genre: book.genre,
         description: book.description,
         pages: book.pages,
+        coverImage: book.coverImage,
         createdAt: book.createdAt,
         updatedAt: book.updatedAt,
         __v: book.__v
@@ -121,7 +124,7 @@ const getBookByTitle = asynHandler(async (req, res) => {
 // @access  Public
 const createNewBook = asynHandler(async (req, res) => {
     try {
-        let { title, author, releaseYear, genre, description, pages } = req.body;
+        let { title, author, releaseYear, genre, description, pages, coverImage } = req.body;
     
         // Check if author name already exists in the database
         let existingAuthor = await Author.findOne({ name: author });
@@ -136,7 +139,8 @@ const createNewBook = asynHandler(async (req, res) => {
           releaseYear,
           genre,
           description,
-          pages
+          pages,
+          coverImage
         });
     
         await book.save();
@@ -154,7 +158,7 @@ const createNewBook = asynHandler(async (req, res) => {
 // @access  Public
 const updateBook = asynHandler(async (req, res) => {
     const { id } = req.params
-    const { title, author, releaseYear, genre, description, pages } = req.body
+    const { title, author, releaseYear, genre, description, pages, coverImage } = req.body
 
     const book = await Book.findById(id).exec()
 
@@ -175,6 +179,7 @@ const updateBook = asynHandler(async (req, res) => {
     book.genre = genre
     book.description = description
     book.pages = pages
+    book.coverImage = coverImage
 
     const updatedBook = await book.save()
     res.json(`'${updatedBook.title}' updated`)
