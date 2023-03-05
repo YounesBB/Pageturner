@@ -35,10 +35,18 @@ export const MyBooks = () => {
   }, []);
 
   return (
+    <>
+    <ul>
+      <li id="Library">
+        <h1>My library:</h1>
+      </li>
+      <li id="addBook">
+        <AddBook onAddBook={handleAddBook} />
+      </li>
+    </ul>
     <div>
-      <h1>My library:</h1>
-      <AddBook onAddBook={handleAddBook} />
       <BookList books={books} />
     </div>
+    </>
   );
 };

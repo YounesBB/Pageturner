@@ -1,15 +1,39 @@
+body {
+  margin: 150px 0 0 0; /* add a margin-top to create space for the navbar */
+}
+
+.page {
+  position: relative;
+  z-index: 1; /* set a z-index to ensure the page content is behind the navbar */
+  background-color: #fff;
+  overflow: hidden;
+  animation-name: page-fade-in;
+  animation-duration: 2s;
+  padding: 0 0px;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
 #navbar {
+  height: 80px; 
+  position: fixed;
+  top: 1px;
+  left: 0;
+  width: 100%;
+  z-index: 999;
   display: flex;
   justify-content: center; /* center the flex items horizontally */
   align-items: center;
   background-color: rgb(255, 255, 255);
-  padding: 20px;
-  box-shadow: 0 0 10px green;
+  padding: 1px 1px; /* reduce the top and bottom padding */
+  box-shadow: 0 0 5px green;
+  border-radius: 0px; /* add rounded corners */
+  z-index: 9999;
+  opacity: 0.98;
 }
 
 #navbar ul {
   display: flex;
-  justify-content: center; /* center the flex items horizontally */
+  justify-content: space-between; /* center the items and leave empty space around them */
   align-items: center;
   list-style: none;
   margin: 0;
@@ -24,6 +48,7 @@
 
 #navbar li:last-child {
   margin-right: 0;
+  margin-left: 40px;
 }
 
 #navbar a {
@@ -39,11 +64,6 @@
 
 #navitem a:hover {
   font-weight: 2000;
-}
-
-#logo {
-  width: 150px;
-  border: 2px solid white;
 }
 
 /* Style for the app page below the nav bar */
@@ -62,3 +82,160 @@
     margin-top: 30px;
   }
 }
+
+
+#searchInput {
+  background-color: gray;
+  position: relative;
+  margin-top: 20px;
+  width: 600px;
+  height: 15px;
+  padding: 10px;
+  border: 1px solid green;
+  background: #F2F2F2;
+  border-radius: 15px;
+  outline: none;
+  color: #333333;
+  font-size: 0.5em;
+  transition: 0.5s;
+}
+
+
+.searchInput span {
+  position: absolute;
+  left: 20px;
+  padding: 10px;
+  pointer-events: none;
+  font-size: 1em;
+  color: #707070;
+  text-transform: uppercase;
+  transition: 0.5s;
+}
+
+.searchInput input:valid ~ span,
+.searchInput input:focus ~ span {
+  color: #61BC7C;
+  transform: translateX(10px) translateY(-7px);
+  font-size: 0.65em;
+  padding: 0 10px;
+  background: #F2F2F2;
+  border-left: 1px solid #61BC7C;
+  border-right: 1px solid #61BC7C;
+  letter-spacing: 0.2em;
+}
+
+.searchInput input:valid,
+.searchInput input:focus {
+  border: 1px solid #61BC7C;
+}
+
+#searchInput:hover {
+  box-shadow: 0 0 5px green;
+}
+
+#HeaderNYT {
+  font-size: x-large;
+
+}
+
+#app_page {
+  margin-top: 50px;
+  padding: 0 150px;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+#home, #myBooks {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+#home img {
+  width: 150px;
+  margin-right: 10px;
+  padding: 5px 10px;
+}
+
+#myBooks a {
+  display: flex;
+  align-items: center;
+  padding: 15px 25px;
+  border-radius: 15px; /* add rounded corners */
+}
+
+#home:hover {
+  background-color: rgba(128, 128, 128, 0.2);
+  border-radius: 15px; /* add rounded corners */
+  transition: background-color 0.5s;
+}
+
+#myBooks:hover {
+  background-color: rgba(128, 128, 128, 0.2);
+  border-radius: 15px; /* add rounded corners */
+  transition: background-color 0.5s;
+}
+
+.page {
+  position: relative;
+  top: 5px; /* adjust this value to match the height of your navigation bar */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background-color: #fff; /* set the background color to match the page background */
+  overflow: hidden;
+  animation-name: page-fade-in;
+  animation-duration: 1s;
+  padding: 0 0px;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#add-book-container {
+  position: relative;
+  top: 10px;
+  margin-left: 10px;
+}
+
+#Library {
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+#Library h1 {
+  margin-right: 20px;
+}
+
+#addBook {
+  margin-left: auto;
+  margin-top: -70px;
+}
+
+ul {
+  list-style: none;
+}
+
+#Library {
+  margin-left: -35px;
+}
+
+
+
+
+
+
+
+
+
+
+

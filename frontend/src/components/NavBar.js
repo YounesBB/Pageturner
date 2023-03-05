@@ -1,6 +1,9 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
-import logo from "../logo.jpeg"
+import { Link, useLocation, useHistory, useNavigate  } from "react-router-dom"
+import logo from "../logo2.png"
+import { Search } from "./Search";
+import { AddBook } from "../components/AddBook";
+
 
 const NavItem = ({link, label}) => {
     return (
@@ -10,24 +13,29 @@ const NavItem = ({link, label}) => {
     )
 }
 
-// logic for navigation bar
-// app Logo, Search, and My Books should be displayed
-export const NavBar = ({ children }) => {
+export const NavBar = () => {
+    const history = useNavigate();
+  
     return (
-        <nav id="navbar">
-            <ul>
-                <li id="home">
-                    <Link to="/">
-                        <img src={logo} alt="Logo" id="logo"/>
-                    </Link>
-                </li>
-                <li id="Search">
-                    <NavItem link="/search" label="Search"/>
-                </li>
-                <li id="myBooks">
-                    <NavItem link="/mybooks" label="My Books"/>
-                </li>
-            </ul>
-        </nav>
-    )
-}
+      <nav id="navbar">
+        <ul>
+          <li id="home">
+            <Link to="/">
+              <img src={logo} alt="Logo" id="logo" />
+            </Link>
+          </li>
+          <div id="searchbox">
+            <li>
+                <Search
+                onSearchChange={(query) => console.log("searching for", query)}
+                history={history}
+                />
+            </li>
+          </div>
+          <li id="myBooks">
+            <NavItem link="/mybooks" label="My Books" />
+          </li>
+        </ul>
+      </nav>
+    );
+  };
