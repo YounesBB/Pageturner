@@ -1,53 +1,64 @@
-import { Route, Routes, Link } from "react-router-dom"
-import { AppPage } from "./components/AppPage"
-import { NavBar } from "./components/NavBar"
-import { Home } from "./pages/Home"
-import { SearchPage } from "./pages/SearchPage"
-import { MyBooks } from "./pages/MyBooks"
-import "./index.css"
-import { getBookByTitle, getAllBooks, getBookById, deleteBookById, createNewBook } from "./api/booksAPI"
-import { getAllAuthors, getAuthorById, getAuthorByFullName, createNewAuthor, deleteAuthorByFullName, deleteAuthorById } from "./api/authorsAPI"
-import { useState, useEffect } from "react"
+import { Route, Routes } from "react-router-dom";
+import { AppPage } from "./components/AppPage";
+import { NavBar } from "./components/NavBar";
+import { Home } from "./pages/Home";
+import { SearchPage } from "./pages/SearchPage";
+import { MyBooks } from "./pages/MyBooks";
+import "./index.css";
+import { useState } from "react";
+import { FluentProvider, webLightTheme, webDarkTheme } from "@fluentui/react-components";
+import { mergeStyles } from "@fluentui/react";
+import { useEffect } from "react";
+
+const updateBackgroundColors = (isDarkMode) => {
+  document.body.style.backgroundColor = isDarkMode ? "#292929" : "white";
+  document.documentElement.style.backgroundColor = isDarkMode ? "#292929" : "white";
+  document.getElementById("root").style.backgroundColor = isDarkMode ? "#292929" : "white";
+};
+mergeStyles({
+    ":global(body,html,#root)": {
+    margin: "80px 0 0", // top=80px, right=0, bottom=0, left=0
+      padding: 0,
+      height: "100vh",
+    },
+  });
 
 export const App = () => {
-    // TESTING API CALLS FOR BOOKS
-    //const [books, setBooks] = useState([]);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
-    //useEffect(() => {
-        //getAllBooks().then((data) => setBooks(data));
-    //}, []);
+  const handleToggleTheme = () => {
+    const newIsDarkMode = !isDarkMode;
+    setIsDarkMode(newIsDarkMode);
+    localStorage.setItem("isDarkMode", newIsDarkMode);
+  };
 
-    // TESTING API CALLS FOR BOOKS
-    //getBookByTitle("Kiterunner")
-    //getBookById("63ef962ad3358870b331aef6")
-    // This needs updated backend code to work 
-    //createNewBook("Bird Man", "Brad Bird", 2004, "Action", "A family of superheroes", 100) 
-    //deleteBookById("63f3a6dbcd29f2e0cbd58cd8") // this deletes the book in the database so its commented out
+  useEffect(() => {
+    const storedIsDarkMode = localStorage.getItem("isDarkMode");
+    if (storedIsDarkMode !== null) {
+      setIsDarkMode(storedIsDarkMode === "true");
+    }
+  }, []);
 
-    // TESTING API CALLS FOR AUTHORS
-    //getAllAuthors()
-    //getAuthorById("63ee01f1d5d40ea914b440d9")
-    //getAuthorByFullName("younes")
-    //Create a new author needs to fix ref
-    //createNewAuthor("Alibaba Mogadeen", 1968, ["63f23a1a53a8ed0be358bf5b", "63ef962ad3358870b331aef6"])
-    //deleteAuthorByFullName("Franz Kafka")
-    //deleteAuthorById("63f4bb75f0cd188bbfc805d8")
-    // h
+  useEffect(() => {
+    updateBackgroundColors(isDarkMode);
+  }, [isDarkMode]);
+  
 
-
-    return (
-        <>
-            <NavBar />
-                <AppPage>
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/search" element={<SearchPage />} />
-                        <Route path="/mybooks" element={<MyBooks />} />
-                        <Route />
-                    </Routes>
-                </AppPage>
-        </>
-    )
-}
-
-export default App
+  return (
+    <>
+      <div className="App_page">
+        <FluentProvider theme={isDarkMode ? webDarkTheme : webLightTheme}>
+         <NavBar handleToggleTheme={handleToggleTheme} isDarkMode={isDarkMode} />
+          <AppPage>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/search" element={<SearchPage />} />
+              <Route path="/mybooks" element={<MyBooks />} />
+              <Route />
+            </Routes>
+          </AppPage>
+        </FluentProvider>
+      </div>
+    </>
+  );
+};
