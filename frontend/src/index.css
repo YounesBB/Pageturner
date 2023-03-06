@@ -1,17 +1,4 @@
-body {
-  margin: 150px 0 0 0; /* add a margin-top to create space for the navbar */
-}
 
-.page {
-  position: relative;
-  z-index: 1; /* set a z-index to ensure the page content is behind the navbar */
-  background-color: #fff;
-  overflow: hidden;
-  animation-name: page-fade-in;
-  animation-duration: 2s;
-  padding: 0 0px;
-  font-family: 'Nunito Sans', sans-serif;
-}
 
 #navbar {
   height: 80px; 
@@ -48,7 +35,14 @@ body {
 
 #navbar li:last-child {
   margin-right: 0;
-  margin-left: 40px;
+  margin-left: 30px;
+  margin-top: 3px;
+}
+
+#navbar li:last-child > * {
+  margin-right: 0;
+  margin-left: 30px;
+  margin-top: 3px;
 }
 
 #navbar a {
@@ -58,13 +52,66 @@ body {
   transition: color 0.2s;
 }
 
-#navbar a:hover {
-  color: #000;
-}
 
 #navitem a:hover {
   font-weight: 2000;
 }
+
+#navbarBlack {
+  height: 80px; 
+  position: fixed;
+  top: 1px;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #151313;
+  padding: 1px 1px;
+  box-shadow: 0 0 5px green;
+  border-radius: 0px;
+  z-index: 9999;
+  opacity: 0.98;
+}
+
+#navbarBlack ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: large;
+}
+
+#navbarBlack li {
+  margin: 0 20px;
+}
+
+#navbarBlack li:last-child {
+  margin-right: 0;
+  margin-left: 30px;
+  margin-top: 3px;
+  color: #fff !important;
+}
+
+#navbarBlack li:last-child > * {
+  margin-right: 0;
+  margin-left: 30px;
+  margin-top: 3px;
+  color: #fff !important;
+}
+
+#navbarBlack a {
+  text-decoration: none;
+  color: #fff; /* change the text color to white */
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+
 
 /* Style for the app page below the nav bar */
 
@@ -176,21 +223,6 @@ body {
   transition: background-color 0.5s;
 }
 
-.page {
-  position: relative;
-  top: 5px; /* adjust this value to match the height of your navigation bar */
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 999;
-  background-color: #fff; /* set the background color to match the page background */
-  overflow: hidden;
-  animation-name: page-fade-in;
-  animation-duration: 1s;
-  padding: 0 0px;
-  font-family: 'Nunito Sans', sans-serif;
-}
-
 @keyframes page-fade-in {
   from {
     opacity: 0;
@@ -228,7 +260,6 @@ ul {
 #Library {
   margin-left: -35px;
 }
-
 
 
 
