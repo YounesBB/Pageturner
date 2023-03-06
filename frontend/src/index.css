@@ -211,6 +211,13 @@
   border-radius: 15px; /* add rounded corners */
 }
 
+#logIn a {
+  display: flex;
+  align-items: center;
+  padding: 15px 25px;
+  border-radius: 15px; /* add rounded corners */
+}
+
 #home:hover {
   background-color: rgba(128, 128, 128, 0.2);
   border-radius: 15px; /* add rounded corners */
@@ -218,6 +225,12 @@
 }
 
 #myBooks:hover {
+  background-color: rgba(128, 128, 128, 0.2);
+  border-radius: 15px; /* add rounded corners */
+  transition: background-color 0.5s;
+}
+
+#logIn:hover {
   background-color: rgba(128, 128, 128, 0.2);
   border-radius: 15px; /* add rounded corners */
   transition: background-color 0.5s;
