@@ -3,7 +3,6 @@ import { Link, useNavigate  } from "react-router-dom"
 import logo from "../logo2.png"
 import { Search } from "./Search";
 import React from "react";
-import Switch from 'react-switch';
 import { Toggle } from '@fluentui/react';
 
 const NavItem = ({link, label}) => {
