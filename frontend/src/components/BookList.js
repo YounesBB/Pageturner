@@ -14,14 +14,7 @@ import { BookRow } from "./BookRow"
 import { ShowBookInfo } from "./ShowBookInfo"
 
 const columns = [
-    {
-      columnKey: "coverImage",
-      label: "Cover Image",
-      render: (book) => (
-        <img src={book.coverImageUrl} alt={`Cover of ${book.title}`} />
-      ),
-      icon: <BookOpen24Regular />,
-    },
+    { columnKey: "coverImage" },
     { columnKey: "title", label: "Book title", icon: <BookOpen24Regular /> },
     { columnKey: "author", label: "Author", icon: <PersonEdit24Regular /> },
     { columnKey: "releaseYear", label: "Release Year", icon: <CalendarLtr24Regular /> },

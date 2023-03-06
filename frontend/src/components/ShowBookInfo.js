@@ -11,9 +11,6 @@ import {
     makeStyles,
 } from "@fluentui/react-components"
 
-import bookIMG from "../book-removebg-preview.png";
-
-
 const useStyles = makeStyles({
     content: {
         display: "flex",
@@ -42,7 +39,7 @@ export const ShowBookInfo = ({ book, onResetBook }) => {
                         <DialogBody>
                             <DialogTitle>Book Information</DialogTitle>
                             <DialogContent className={styles.content}>
-                            <img src={bookIMG} alt="Book cover" style={{ width: "150px", height: "auto", marginLeft: "-20px" }} />
+                            <img src={book.coverImage} width={100} height={150}/>
                                 <Label htmlFor={"title-input"}>
                                     Book title: <large>{book.title}</large>
                                 </Label>

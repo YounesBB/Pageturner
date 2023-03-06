@@ -6,7 +6,7 @@ import { AddBook } from "../components/AddBook";
 export const MyBooks = () => {
   const [books, setBooks] = useState([]);
 
-  const handleAddBook = (title, author, releaseYear, genre, description, pages) => {
+  const handleAddBook = (title, author, releaseYear, genre, description, pages, coverImage) => {
     const newBook = {
       title: title,
       author: author,
@@ -14,6 +14,7 @@ export const MyBooks = () => {
       genre: genre,
       description: description,
       pages: pages,
+      coverImage: coverImage
     };
     try {
       setBooks([...books, newBook]);
