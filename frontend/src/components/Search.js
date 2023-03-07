@@ -30,7 +30,7 @@ export const Search = ({ onSearchChange }) => {
         <input
           id="searchInput"
           type="text"
-          placeholder="Search by title"
+          placeholder="Search PageTurner"
           value={searchTerm}
           onChange={handleSearchChange}
         />

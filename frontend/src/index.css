@@ -1,21 +1,44 @@
+.library-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgba(0, 128, 0, 0.3);
+  padding: 0px 0;
+}
+
+.library-controls h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: bolder;
+}
+
+.library-controls button {
+  padding: 8px 16px;
+  background-color: rgba(0, 128, 0, 0.3);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
 
 
 #navbar {
-  height: 80px; 
+  height: 65px; 
   position: fixed;
-  top: 1px;
+  top: 0px;
   left: 0;
   width: 100%;
   z-index: 999;
   display: flex;
   justify-content: center; /* center the flex items horizontally */
   align-items: center;
-  background-color: rgb(255, 255, 255);
+  background-color: #F3F1EB;
   padding: 1px 1px; /* reduce the top and bottom padding */
-  box-shadow: 0 0 5px green;
+  box-shadow: 0 0 5px #3a795a;
   border-radius: 0px; /* add rounded corners */
   z-index: 9999;
-  opacity: 0.98;
+
 }
 
 #navbar ul {
@@ -58,9 +81,9 @@
 }
 
 #navbarBlack {
-  height: 80px; 
+  height: 65px; 
   position: fixed;
-  top: 1px;
+  top: 0px;
   left: 0;
   width: 100%;
   z-index: 999;
@@ -69,10 +92,9 @@
   align-items: center;
   background-color: #151313;
   padding: 1px 1px;
-  box-shadow: 0 0 5px green;
+  box-shadow: 0 0 5px #3a795a;
   border-radius: 0px;
   z-index: 9999;
-  opacity: 0.98;
 }
 
 #navbarBlack ul {
@@ -138,7 +160,7 @@
   width: 600px;
   height: 15px;
   padding: 10px;
-  border: 1px solid green;
+  border: 1px solid #3a795a;
   background: #F2F2F2;
   border-radius: 15px;
   outline: none;
@@ -177,7 +199,7 @@
 }
 
 #searchInput:hover {
-  box-shadow: 0 0 5px green;
+  box-shadow: 0 0 5px #3a795a;
 }
 
 #HeaderNYT {
