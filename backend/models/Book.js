@@ -24,11 +24,16 @@ const bookSchema = mongoose.Schema(
             required: true
         },
         pages: {
-            type: Number, 
-            required: true 
+            type: Number,
+            required: true
         },
         coverImage: {
-            type: String, 
+            type: String,
+            required: true
+        },
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
             required: true
         }
     },

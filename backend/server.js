@@ -4,6 +4,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const authorRoutes = require('./routes/authorRoutes')
 const bookRoutes = require('./routes/bookRoutes')
+const userRoutes = require('./routes/userRoutes')
 
 // express app
 const app = express()
@@ -21,10 +22,10 @@ app.use((req, res, next) => {
   next()
 })
 
-
-//means use workoutroutes when a user does a request on localhost:4000/api/workouts...
+// routes
 app.use('/api/author', authorRoutes)
 app.use('/api/books', bookRoutes)
+app.use('/api/users', userRoutes)
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
