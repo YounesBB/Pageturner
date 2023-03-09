@@ -3,6 +3,7 @@ const router = express.Router()
 const {
     getAllBooks,
     getBookById,
+    getBookByISBN,
     getBookByTitle,
     createNewBook,
     updateBook,
@@ -15,6 +16,9 @@ router.get('/', getAllBooks)
 
 // Get a book by id
 router.get('/:id', getBookById)
+
+// Get a book by ISBN
+router.get('/isbn/:isbn', getBookByISBN)
 
 // Get a book by title
 router.get('/title/:title', getBookByTitle)

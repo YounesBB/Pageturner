@@ -3,6 +3,7 @@ import { AppPage } from "./components/AppPage";
 import { NavBar } from "./components/NavBar";
 import { Home } from "./pages/Home";
 import { SearchPage } from "./pages/SearchPage";
+import { BookPage } from "./pages/BookPage";
 import { MyBooks } from "./pages/MyBooks";
 import "./index.css";
 import { useState } from "react";
@@ -54,6 +55,7 @@ export const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="/search" element={<SearchPage />} />
               <Route path="/mybooks" element={<MyBooks />} />
+              <Route path="/mybooks/:isbn" element= {<BookPage/>}/>
               <Route />
             </Routes>
           </AppPage>

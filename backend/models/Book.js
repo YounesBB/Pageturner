@@ -30,6 +30,10 @@ const bookSchema = mongoose.Schema(
         coverImage: {
             type: String, 
             required: true
+        },
+        isbn: {
+            type: String, 
+            required: true
         }
     },
     { timestamps: true }
