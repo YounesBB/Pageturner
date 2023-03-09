@@ -30,6 +30,24 @@ export const getBookById = (id) => {
       });
 }
 
+export const getBookByISBN = (isbn) => {
+    
+  return axios.get(`${baseUrl}/books/isbn/${isbn}`)
+  .then(response => {
+    // Return the books data as JSON
+    //console.log("get worked")
+    let book = response.data
+    console.log(book)
+    return book;
+    //return response.data;
+  })
+  .catch(error => {
+    // Handle any errors
+    console.error(error);
+  });
+}
+
+
 // Get a book by title
 export const getBookByTitle = (title) => {
     return axios.get(`${baseUrl}/books/title/${title}`)
@@ -42,7 +60,7 @@ export const getBookByTitle = (title) => {
   }
   
   // Create a new book
-  export const createNewBook = (title, author, year, genre, desc, pages, coverImage) => {
+  export const createNewBook = (title, author, year, genre, desc, pages, coverImage, isbn) => {
     return axios.post(`${baseUrl}/books`, {
         title: title,
         author: author,
@@ -50,7 +68,8 @@ export const getBookByTitle = (title) => {
         genre: genre,
         description: desc,
         pages: pages,
-        coverImage: coverImage
+        coverImage: coverImage,
+        isbn: isbn
       })
       .then(response => {
         return response.data;

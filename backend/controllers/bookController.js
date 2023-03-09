@@ -22,6 +22,7 @@ const getAllBooks = asynHandler(async (req, res) => {
             description: book.description,
             pages: book.pages,
             coverImage: book.coverImage,
+            isbn: book.isbn,
             createdAt: book.createdAt,
             updatedAt: book.updatedAt,
             __v: book.__v
@@ -78,6 +79,7 @@ const getBookById = asynHandler(async (req, res) => {
           description: book.description,
           pages: book.pages,
           coverImage: book.coverImage,
+          isbn: book.isbn,
           createdAt: book.createdAt,
           updatedAt: book.updatedAt,
           __v: book.__v
@@ -112,10 +114,43 @@ const getBookByTitle = asynHandler(async (req, res) => {
         description: book.description,
         pages: book.pages,
         coverImage: book.coverImage,
+        isbn: book.isbn,
         createdAt: book.createdAt,
         updatedAt: book.updatedAt,
         __v: book.__v
     });
+
+})
+
+// @desc    Get a book by isbn
+// @route   GET /books/isbn/:isbn
+// @access  Public
+const getBookByISBN = asynHandler(async (req, res) => {
+  const { isbn } = req.params
+
+  const regex = new RegExp('^' + isbn + '$', 'i');
+  const book = await Book.findOne({ isbn: regex })
+      .populate('author', 'name') // populate author field with name property only
+      .exec();
+
+  if (!book) {
+      res.status(400).json({ message: 'No book found' })
+  }
+
+  res.status(200).json({
+      _id: book._id,
+      isbn: book.isbn,
+      title: book.title,
+      author: book.author?.name,
+      releaseYear: book.releaseYear,
+      genre: book.genre,
+      description: book.description,
+      pages: book.pages,
+      coverImage: book.coverImage,
+      createdAt: book.createdAt,
+      updatedAt: book.updatedAt,
+      __v: book.__v
+  });
 
 })
 
@@ -124,7 +159,7 @@ const getBookByTitle = asynHandler(async (req, res) => {
 // @access  Public
 const createNewBook = asynHandler(async (req, res) => {
     try {
-        let { title, author, releaseYear, genre, description, pages, coverImage } = req.body;
+        let { isbn, title, author, releaseYear, genre, description, pages, coverImage } = req.body;
     
         // Check if author name already exists in the database
         let existingAuthor = await Author.findOne({ name: author });
@@ -134,6 +169,7 @@ const createNewBook = asynHandler(async (req, res) => {
         let bookAuthor = existingAuthor ? existingAuthor : await Author.create({ name: author });
     
         let book = new Book({
+          isbn,
           title,
           author: bookAuthor._id,
           releaseYear,
@@ -158,7 +194,7 @@ const createNewBook = asynHandler(async (req, res) => {
 // @access  Public
 const updateBook = asynHandler(async (req, res) => {
     const { id } = req.params
-    const { title, author, releaseYear, genre, description, pages, coverImage } = req.body
+    const { title, author, releaseYear, genre, description, pages, coverImage, isbn } = req.body
 
     const book = await Book.findById(id).exec()
 
@@ -180,6 +216,7 @@ const updateBook = asynHandler(async (req, res) => {
     book.description = description
     book.pages = pages
     book.coverImage = coverImage
+    book.isbn = isbn
 
     const updatedBook = await book.save()
     res.json(`'${updatedBook.title}' updated`)
@@ -222,6 +259,7 @@ const deleteBookByTitle = asynHandler(async (req, res) => {
 module.exports = {
     getAllBooks,
     getBookById,
+    getBookByISBN,
     getBookByTitle,
     createNewBook,
     updateBook,

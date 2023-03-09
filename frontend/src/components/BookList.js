@@ -11,7 +11,7 @@ import {
 
 import { BookRow } from "./BookRow"
 
-import { ShowBookInfo } from "./ShowBookInfo"
+import { ShowBookDialog } from "./ShowBookDialog"
 
 const columns = [
     { columnKey: "coverImage" },
@@ -29,6 +29,7 @@ export const BookList = ({books}) => {
     const handleBookClick = (book) => {
         console.log("click book", book)
         setCurrentBook(book)
+        window.location.href = "/mybooks/" + book.isbn
     }
     
     // sets current book to null
@@ -37,10 +38,16 @@ export const BookList = ({books}) => {
         setCurrentBook(null)
     }
 
+    // const migrateBooks = () => {
+    //     books.forEach(book => {
+    //        setNewBook(book)
+    //     })
+    // }
+
     // logic for displaying list of books using a table
     return (
         <div>
-            <ShowBookInfo book={currentBook} onResetBook={handleResetBook}/>
+            <ShowBookDialog book={currentBook} onResetBook={handleResetBook}/>
             <Table arial-label="Default table">
             <TableHeader>
                 <TableRow style={{ borderBottom: '2px solid rgba(0, 128, 0, 0.3)' }}>
