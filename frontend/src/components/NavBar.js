@@ -1,10 +1,10 @@
 import { webDarkTheme, webLightTheme } from "@fluentui/react-components";
 import { Link, useNavigate  } from "react-router-dom"
-import logo from "../logo2.png"
+import logo from "../Logo1Light.png"
+import logoDark from "../Logo1.png"
 import { Search } from "./Search";
 import React from "react";
 import { Toggle } from '@fluentui/react';
-
 const NavItem = ({link, label}) => {
   return (
     <div  id="navitem">
@@ -22,7 +22,7 @@ export const NavBar = ({ handleToggleTheme, isDarkMode }) => {
         <ul>
           <li id="home">
             <Link to="/">
-              <img src={logo} alt="Logo" id="logo" />
+              <img src={isDarkMode ? logoDark : logo} alt="Logo" id="logo" />
             </Link>
           </li>
           <div id="searchbox">
@@ -42,7 +42,7 @@ export const NavBar = ({ handleToggleTheme, isDarkMode }) => {
               checked={isDarkMode}
               onText="Dark"
               offText="Light"
-              style={{ backgroundColor: isDarkMode ? 'green' : 'white', color: isDarkMode ? '#fff' : '#333' }}
+              style={{ backgroundColor: isDarkMode ? '#225332' : 'white', color: isDarkMode ? '#fff' : '#333' }}
             />
           </li>
         </ul>
