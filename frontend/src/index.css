@@ -294,10 +294,11 @@ ul {
 .login-input {
   border: 1px solid #61BC7C;
   height: 30px;
-  width: 300px;
+  width: 500px;
   margin-bottom: 1rem;
   padding: 0.5rem;
   font-size: 1.2rem;
+  border-radius: 15px; /* add rounded corners */
 }
 
 /* Submit button */
@@ -309,10 +310,28 @@ ul {
   font-size: 1.2rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-left: 10px;
+  border-radius: 15px; /* add rounded corners */
+  width: 520px;
+}
+
+.register-submit{
+  background-color: #61BC7C;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 15px; /* add rounded corners */
+  margin-top: 15px;
+  width: 520px;
 }
 
 .login-submit:hover {
+  background-color: #449d5c;
+}
+
+.register-submit:hover {
   background-color: #449d5c;
 }
 

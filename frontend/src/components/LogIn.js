@@ -5,10 +5,10 @@ export function LogIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const LogInnClick = () => {
-    setUsername("");
+  const LogInnClick = (username, password) => {
+    setUsername(username);
     console.log(username);
-    setPassword("");
+    setPassword(password);
     console.log(password);
     User(username, password).then(
 
@@ -20,32 +20,34 @@ export function LogIn() {
   return (
     <>
       <div class="login-wrapper">
-        <h1 class="login-title">Log In</h1>
+  <h1 class="login-title">Log in or Register</h1>
 
-        <form>
-          <input
-            class="login-input"
-            type="text"
-            id="username"
-            name="username"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-            placeholder="Username"
-          />
-
-          <input
-            class="login-input"
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            placeholder="Password"
-          />
-
-          <button class="login-submit" onClick={event => LogInnClick()}>Log In</button>
-        </form>
-      </div>
+  <form>
+    <input
+      class="login-input"
+      type="text"
+      id="username"
+      name="username"
+      value={username}
+      onChange={(event) => setUsername(event.target.value)}
+      placeholder="Username"
+    />
+    <br></br>
+    <input
+      class="login-input"
+      type="password"
+      id="password"
+      name="password"
+      value={password}
+      onChange={(event) => setPassword(event.target.value)}
+      placeholder="Password"
+    />
+     <br></br>
+    <button class="login-submit" onClick={event => LogInnClick(username, password)}>Log in</button>
+    <br></br>
+    <button class="register-submit" onClick={event => LogInnClick(username, password)}>Register</button>
+  </form>
+</div>
 
     </>
   );
