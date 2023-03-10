@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {User} from "../api/users"
+import { User } from "../api/users"
 
 export function LogIn() {
   const [username, setUsername] = useState("");
@@ -10,7 +10,7 @@ export function LogIn() {
     console.log(username);
     setPassword("");
     console.log(password);
-    User(username,password).then(
+    User(username, password).then(
 
     ).catch(() => {
       // handle error here
@@ -20,32 +20,32 @@ export function LogIn() {
   return (
     <>
       <div class="login-wrapper">
-  <h1 class="login-title">Log In</h1>
+        <h1 class="login-title">Log In</h1>
 
-  <form>
-    <input
-      class="login-input"
-      type="text"
-      id="username"
-      name="username"
-      value={username}
-      onChange={(event) => setUsername(event.target.value)}
-      placeholder="Username"
-    />
+        <form>
+          <input
+            class="login-input"
+            type="text"
+            id="username"
+            name="username"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+            placeholder="Username"
+          />
 
-    <input
-      class="login-input"
-      type="password"
-      id="password"
-      name="password"
-      value={password}
-      onChange={(event) => setPassword(event.target.value)}
-      placeholder="Password"
-    />
+          <input
+            class="login-input"
+            type="password"
+            id="password"
+            name="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            placeholder="Password"
+          />
 
-    <button class="login-submit" onClick={event => LogInnClick()}>Log In</button>
-  </form>
-</div>
+          <button class="login-submit" onClick={event => LogInnClick()}>Log In</button>
+        </form>
+      </div>
 
     </>
   );
