@@ -4,6 +4,7 @@ import { NavBar } from "./components/NavBar";
 import { Home } from "./pages/Home";
 import { SearchPage } from "./pages/SearchPage";
 import { MyBooks } from "./pages/MyBooks";
+import { LogInPage } from "./pages/LogInPage";
 import "./index.css";
 import { useState } from "react";
 import { FluentProvider, webLightTheme, webDarkTheme } from "@fluentui/react-components";
@@ -54,6 +55,7 @@ export const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="/search" element={<SearchPage />} />
               <Route path="/mybooks" element={<MyBooks />} />
+              <Route path="/login" element={<LogInPage />} />
               <Route />
             </Routes>
           </AppPage>
