@@ -8,39 +8,35 @@ const asynHandler = require('express-async-handler');
 // @access  Public
 const getAllBooks = asynHandler(async (req, res) => {
 
-  try {
-    // Find all books, populate author field
-    const user = await User.findById(req.user._id).exec()
-    const books = await Book.find().sort({ createdAt: -1 })
-      .populate('author', 'name')
-      //.populate('user', 'email')
-      .exec()
-
-    // Map through each book and replace author id with author name
-    const booksWithAuthorName = books.map(book => {
-      return {
-        _id: book._id,
-        title: book.title,
-        author: book.author?.name, // get the name field of the author object
-        releaseYear: book.releaseYear,
-        genre: book.genre,
-        description: book.description,
-        pages: book.pages,
-        coverImage: book.coverImage,
-        //user: book.user?.email, // get the email field of the user object
-        createdAt: book.createdAt,
-        updatedAt: book.updatedAt,
-        __v: book.__v
+    try {
+        // Find all books, populate author field
+        const books = await Book.find().sort({ createdAt: -1 }).populate('author', 'name')
+    
+        // Map through each book and replace author id with author name
+        const booksWithAuthorName = books.map(book => {
+          return {
+            _id: book._id,
+            title: book.title,
+            author: book.author?.name, // get the name field of the author object
+            releaseYear: book.releaseYear,
+            genre: book.genre,
+            description: book.description,
+            pages: book.pages,
+            coverImage: book.coverImage,
+            isbn: book.isbn,
+            createdAt: book.createdAt,
+            updatedAt: book.updatedAt,
+            __v: book.__v
+          }
+        })
+    
+        // Send books with author name as JSON response
+        res.json(booksWithAuthorName)
+      } catch (error) {
+        // Handle any errors
+        console.error(error)
+        res.status(500).json({ message: 'Server Error' })
       }
-    })
-
-    // Send books with author name as JSON response
-    res.json(booksWithAuthorName)
-  } catch (error) {
-    // Handle any errors
-    console.error(error)
-    res.status(500).json({ message: 'Server Error' })
-  }
 
   /*const books = await Book.find({}).sort({ createdAt: -1 }).exec()
 
@@ -65,33 +61,34 @@ const getBookById = asynHandler(async (req, res) => {
     return res.status(400).json({ message: 'Book ID required' })
   }
 
-  try {
-    const book = await Book.findById(req.params.id)
-      .populate('author', 'name') // only include author name in response
-
-    if (!book) {
-      // Return an error response if the book is not found
-      return res.status(404).json({ message: 'Book not found' })
-    }
-
-    // Return the book as JSON
-    res.json({
-      _id: book._id,
-      title: book.title,
-      author: book.author?.name,
-      releaseYear: book.releaseYear,
-      genre: book.genre,
-      description: book.description,
-      pages: book.pages,
-      coverImage: book.coverImage,
-      createdAt: book.createdAt,
-      updatedAt: book.updatedAt,
-      __v: book.__v
-    })
-  } catch (err) {
-    // Return an error response if there's an error
-    res.status(500).json({ message: err.message })
-  }
+    try {
+        const book = await Book.findById(req.params.id)
+          .populate('author', 'name') // only include author name in response
+    
+        if (!book) {
+          // Return an error response if the book is not found
+          return res.status(404).json({ message: 'Book not found' })
+        }
+    
+        // Return the book as JSON
+        res.json({
+          _id: book._id,
+          title: book.title,
+          author: book.author?.name,
+          releaseYear: book.releaseYear,
+          genre: book.genre,
+          description: book.description,
+          pages: book.pages,
+          coverImage: book.coverImage,
+          isbn: book.isbn,
+          createdAt: book.createdAt,
+          updatedAt: book.updatedAt,
+          __v: book.__v
+        })
+      } catch (err) {
+        // Return an error response if there's an error
+        res.status(500).json({ message: err.message })
+      }
 })
 
 // @desc    Get a book by title
@@ -110,19 +107,51 @@ const getBookByTitle = asynHandler(async (req, res) => {
     res.status(400).json({ message: 'No book found' })
   }
 
+    res.status(200).json({
+        _id: book._id,
+        title: book.title,
+        author: book.author?.name,
+        releaseYear: book.releaseYear,
+        genre: book.genre,
+        description: book.description,
+        pages: book.pages,
+        coverImage: book.coverImage,
+        isbn: book.isbn,
+        createdAt: book.createdAt,
+        updatedAt: book.updatedAt,
+        __v: book.__v
+    });
+
+})
+
+// @desc    Get a book by isbn
+// @route   GET /books/isbn/:isbn
+// @access  Public
+const getBookByISBN = asynHandler(async (req, res) => {
+  const { isbn } = req.params
+
+  const regex = new RegExp('^' + isbn + '$', 'i');
+  const book = await Book.findOne({ isbn: regex })
+      .populate('author', 'name') // populate author field with name property only
+      .exec();
+
+  if (!book) {
+      res.status(400).json({ message: 'No book found' })
+  }
+
   res.status(200).json({
-    _id: book._id,
-    title: book.title,
-    author: book.author?.name,
-    releaseYear: book.releaseYear,
-    genre: book.genre,
-    description: book.description,
-    pages: book.pages,
-    coverImage: book.coverImage,
-    //user: book.user?.email,
-    createdAt: book.createdAt,
-    updatedAt: book.updatedAt,
-    __v: book.__v
+      _id: book._id,
+      isbn: book.isbn,
+      title: book.title,
+      author: book.author?.name,
+      releaseYear: book.releaseYear,
+      genre: book.genre,
+      description: book.description,
+      pages: book.pages,
+      coverImage: book.coverImage,
+      createdAt: book.createdAt,
+      updatedAt: book.updatedAt,
+      __v: book.__v
   });
 
 })
@@ -131,42 +160,43 @@ const getBookByTitle = asynHandler(async (req, res) => {
 // @route   POST /books/
 // @access  Public
 const createNewBook = asynHandler(async (req, res) => {
-  try {
-    let { title, author, releaseYear, genre, description, pages, coverImage } = req.body;
-
-    // Check if author name already exists in the database
-    let existingAuthor = await Author.findOne({ name: author });
-
-    // If author exists, use the existing author document
-    // Otherwise, create a new author document
-    let bookAuthor = existingAuthor ? existingAuthor : await Author.create({ name: author });
-
-    let book = new Book({
-      title,
-      author: bookAuthor._id,
-      releaseYear,
-      genre,
-      description,
-      pages,
-      coverImage
-    });
-
-    await book.save();
-
-    res.status(201).json({ message: 'Book created successfully', book });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server error' });
-  }
-});
-
+    try {
+        let { isbn, title, author, releaseYear, genre, description, pages, coverImage } = req.body;
+    
+        // Check if author name already exists in the database
+        let existingAuthor = await Author.findOne({ name: author });
+    
+        // If author exists, use the existing author document
+        // Otherwise, create a new author document
+        let bookAuthor = existingAuthor ? existingAuthor : await Author.create({ name: author });
+    
+        let book = new Book({
+          isbn,
+          title,
+          author: bookAuthor._id,
+          releaseYear,
+          genre,
+          description,
+          pages,
+          coverImage
+        });
+    
+        await book.save();
+    
+        res.status(201).json({ message: 'Book created successfully', book });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+      }
+  });
+  
 
 // @desc    Update a book
 // @route   PATCH /books/:id
 // @access  Public
 const updateBook = asynHandler(async (req, res) => {
-  const { id } = req.params
-  const { title, author, releaseYear, genre, description, pages, coverImage } = req.body
+    const { id } = req.params
+    const { title, author, releaseYear, genre, description, pages, coverImage, isbn } = req.body
 
   const book = await Book.findById(id).exec()
 
@@ -181,13 +211,14 @@ const updateBook = asynHandler(async (req, res) => {
     return res.status(409).json({ message: 'Duplicate book title' })
   }
 
-  book.title = title
-  book.author = author
-  book.releaseYear = releaseYear
-  book.genre = genre
-  book.description = description
-  book.pages = pages
-  book.coverImage = coverImage
+    book.title = title
+    book.author = author
+    book.releaseYear = releaseYear
+    book.genre = genre
+    book.description = description
+    book.pages = pages
+    book.coverImage = coverImage
+    book.isbn = isbn
 
   const updatedBook = await book.save()
   res.json(`'${updatedBook.title}' updated`)
@@ -228,12 +259,13 @@ const deleteBookByTitle = asynHandler(async (req, res) => {
 
 
 module.exports = {
-  getAllBooks,
-  getBookById,
-  getBookByTitle,
-  createNewBook,
-  updateBook,
-  deleteBook,
-  deleteBookByTitle
+    getAllBooks,
+    getBookById,
+    getBookByISBN,
+    getBookByTitle,
+    createNewBook,
+    updateBook,
+    deleteBook, 
+    deleteBookByTitle
 }
 

@@ -22,8 +22,25 @@ export const getBooks = () => {
     });
 }
 
+export const getBookByISBN = (isbn) => {
+    
+  return axios.get(`${baseUrl}/books/isbn/${isbn}`)
+  .then(response => {
+    // Return the books data as JSON
+    //console.log("get worked")
+    let book = response.data
+    console.log(book)
+    return book;
+    //return response.data;
+  })
+  .catch(error => {
+    // Handle any errors
+    console.error(error);
+  });
+}
 
-export const newBook = (title, author, year, genre, desc, pages, coverImage) => {
+
+export const newBook = (title, author, year, genre, desc, pages, coverImage, isbn) => {
   return axios.post(`${baseUrl}/books`, {
       title: title,
       author: author,
@@ -31,7 +48,8 @@ export const newBook = (title, author, year, genre, desc, pages, coverImage) => 
       genre: genre,
       description: desc,
       pages: pages,
-      coverImage: coverImage
+      coverImage: coverImage,
+      isbn: isbn
     })
     .then(response => {
       return response.data;

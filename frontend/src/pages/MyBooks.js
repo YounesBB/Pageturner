@@ -37,14 +37,10 @@ export const MyBooks = () => {
 
   return (
     <>
-    <ul>
-      <li id="Library">
+      <div className="library-controls">
         <h1>My library:</h1>
-      </li>
-      <li id="addBook">
         <AddBook onAddBook={handleAddBook} />
-      </li>
-    </ul>
+      </div>
     <div>
       <BookList books={books} />
     </div>

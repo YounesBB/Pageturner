@@ -1,14 +1,15 @@
 const express = require('express')
 const router = express.Router()
 const {
-  getAllBooks,
-  getBookById,
-  getBookByTitle,
-  createNewBook,
-  updateBook,
-  deleteBook,
-  deleteBookByTitle
-} = require('../controllers/bookController')
+    getAllBooks,
+    getBookById,
+    getBookByISBN,
+    getBookByTitle,
+    createNewBook,
+    updateBook,
+    deleteBook, 
+    deleteBookByTitle
+  } = require('../controllers/bookController')
 
 const { protect } = require('../middleware/authMiddleware')
 
@@ -17,6 +18,9 @@ router.get('/', getAllBooks)
 
 // Get a book by id
 router.get('/:id', getBookById)
+
+// Get a book by ISBN
+router.get('/isbn/:isbn', getBookByISBN)
 
 // Get a book by title
 router.get('/title/:title', getBookByTitle)
