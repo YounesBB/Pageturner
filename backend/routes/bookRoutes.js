@@ -1,14 +1,16 @@
 const express = require('express')
 const router = express.Router()
 const {
-    getAllBooks,
-    getBookById,
-    getBookByTitle,
-    createNewBook,
-    updateBook,
-    deleteBook, 
-    deleteBookByTitle
-  } = require('../controllers/bookController')
+  getAllBooks,
+  getBookById,
+  getBookByTitle,
+  createNewBook,
+  updateBook,
+  deleteBook,
+  deleteBookByTitle
+} = require('../controllers/bookController')
+
+const { protect } = require('../middleware/authMiddleware')
 
 // Get all books
 router.get('/', getAllBooks)
@@ -20,7 +22,7 @@ router.get('/:id', getBookById)
 router.get('/title/:title', getBookByTitle)
 
 // Create a new book
-router.post('/', createNewBook)
+router.post('/', protect, createNewBook)
 
 // Update a book
 router.patch('/:id', updateBook)
