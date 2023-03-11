@@ -9,9 +9,9 @@ const reviewSchema = new Schema(
       ref: 'Book',
       required: true
     },
-    author: { 
+    user: { 
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Author',
+      ref: 'User',
       required: true
     },
     rating: {
