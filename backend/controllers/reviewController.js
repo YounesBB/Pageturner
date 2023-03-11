@@ -6,10 +6,6 @@ const asyncHandler = require('express-async-handler');
 
 
 
-module.exports = {
-  createReview
-}
-
 // @desc    POST a review
 // @route   POST /review
 // @access  Public
@@ -47,4 +43,9 @@ const createReview = asyncHandler(async (req, res) => {
     user
   });
 });
+
+module.exports = {
+  createReview
+}
+
 
