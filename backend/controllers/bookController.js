@@ -1,5 +1,6 @@
 const Book = require('../models/Book');
 const Author = require('../models/Author');
+const User = require('../models/User');
 const asynHandler = require('express-async-handler');
 
 // @desc    Get all books
@@ -37,16 +38,16 @@ const getAllBooks = asynHandler(async (req, res) => {
         res.status(500).json({ message: 'Server Error' })
       }
 
-    /*const books = await Book.find({}).sort({ createdAt: -1 }).exec()
+  /*const books = await Book.find({}).sort({ createdAt: -1 }).exec()
 
-    // If no books found
-    if (!books?.length) {
-        res.status(400).json({ message: 'No books found' })
-    }
+  // If no books found
+  if (!books?.length) {
+      res.status(400).json({ message: 'No books found' })
+  }
 
-    // Return the books
-    res.status(200).json(books)
-    */
+  // Return the books
+  res.status(200).json(books)
+  */
 
 })
 
@@ -54,11 +55,11 @@ const getAllBooks = asynHandler(async (req, res) => {
 // @route   GET /books/:id
 // @access  Public
 const getBookById = asynHandler(async (req, res) => {
-    const { id } = req.params
+  const { id } = req.params
 
-    if (!id) {
-        return res.status(400).json({ message: 'Book ID required' })
-    }
+  if (!id) {
+    return res.status(400).json({ message: 'Book ID required' })
+  }
 
     try {
         const book = await Book.findById(req.params.id)
@@ -94,16 +95,17 @@ const getBookById = asynHandler(async (req, res) => {
 // @route   GET /books/title/:title
 // @access  Public
 const getBookByTitle = asynHandler(async (req, res) => {
-    const { title } = req.params
+  const { title } = req.params
 
-    const regex = new RegExp('^' + title + '$', 'i');
-    const book = await Book.findOne({ title: regex })
-        .populate('author', 'name') // populate author field with name property only
-        .exec();
+  const regex = new RegExp('^' + title + '$', 'i');
+  const book = await Book.findOne({ title: regex })
+    .populate('author', 'name')
+    //.populate('user', 'email') // populate author field with name property only
+    .exec();
 
-    if (!book) {
-        res.status(400).json({ message: 'No book found' })
-    }
+  if (!book) {
+    res.status(400).json({ message: 'No book found' })
+  }
 
     res.status(200).json({
         _id: book._id,
@@ -196,18 +198,18 @@ const updateBook = asynHandler(async (req, res) => {
     const { id } = req.params
     const { title, author, releaseYear, genre, description, pages, coverImage, isbn } = req.body
 
-    const book = await Book.findById(id).exec()
+  const book = await Book.findById(id).exec()
 
-    if (!book) {
-        res.status(400).json({ message: 'No book found' })
-    }
+  if (!book) {
+    res.status(400).json({ message: 'No book found' })
+  }
 
-    // Checking for duplicate titles
-    const duplicate = await Book.findOne({ title }).lean().exec()
+  // Checking for duplicate titles
+  const duplicate = await Book.findOne({ title }).lean().exec()
 
-    if (duplicate && duplicate._id.toString() !== id) {
-        return res.status(409).json({ message: 'Duplicate book title' })
-    }
+  if (duplicate && duplicate._id.toString() !== id) {
+    return res.status(409).json({ message: 'Duplicate book title' })
+  }
 
     book.title = title
     book.author = author
@@ -218,40 +220,40 @@ const updateBook = asynHandler(async (req, res) => {
     book.coverImage = coverImage
     book.isbn = isbn
 
-    const updatedBook = await book.save()
-    res.json(`'${updatedBook.title}' updated`)
+  const updatedBook = await book.save()
+  res.json(`'${updatedBook.title}' updated`)
 })
 
 // @desc    Delete a book
 // @route   DELETE /books/:id
 // @access  Public
 const deleteBook = asynHandler(async (req, res) => {
-    const { id } = req.params
+  const { id } = req.params
 
-    const book = await Book.findById(id).exec()
+  const book = await Book.findById(id).exec()
 
-    if (!book) {
-        res.status(400).json({ message: 'No book found' })
-    }
+  if (!book) {
+    res.status(400).json({ message: 'No book found' })
+  }
 
-    await book.deleteOne()
-    res.json(`'${book.title}' deleted`)
+  await book.deleteOne()
+  res.json(`'${book.title}' deleted`)
 })
 
 // @desc    Delete a book by title
 // @route   DELETE /books/:id
 // @access  Public
 const deleteBookByTitle = asynHandler(async (req, res) => {
-    const { title } = req.params; // Extract title parameter from request
-    const regex = new RegExp('^' + title + '$', 'i'); // Create regex for case-insensitive search
-    const book = await Book.findOneAndDelete({ title: regex }); // Find and delete the book matching the title regex
-    if (!book) { // If no book was found to delete, return an error
-      res.status(400).json({ message: 'No book found' });
-    } else {
-      res.status(200).json({ message: `Book with title ${title} deleted successfully` }); // If book was successfully deleted, return success message
-    }
-  });  
-  
+  const { title } = req.params; // Extract title parameter from request
+  const regex = new RegExp('^' + title + '$', 'i'); // Create regex for case-insensitive search
+  const book = await Book.findOneAndDelete({ title: regex }); // Find and delete the book matching the title regex
+  if (!book) { // If no book was found to delete, return an error
+    res.status(400).json({ message: 'No book found' });
+  } else {
+    res.status(200).json({ message: `Book with title ${title} deleted successfully` }); // If book was successfully deleted, return success message
+  }
+});
+
 
 
 

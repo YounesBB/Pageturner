@@ -5,13 +5,18 @@ import { FluentProvider, teamsLightTheme, webDarkTheme, webLightTheme } from "@f
 import { mergeStyles } from "@fluentui/react"
 
 import { App } from "./App"
+import { AuthProvider } from "./context/AuthProvider"
 
 
 
 ReactDOM.render(
     <BrowserRouter>
-            <App/>
+        <AuthProvider>
+            <App />
+        </AuthProvider>
     </BrowserRouter>,
     document.getElementById("root"),
 )
+
+
 

@@ -233,6 +233,13 @@
   border-radius: 15px; /* add rounded corners */
 }
 
+#logIn a {
+  display: flex;
+  align-items: center;
+  padding: 15px 25px;
+  border-radius: 15px; /* add rounded corners */
+}
+
 #home:hover {
   background-color: rgba(128, 128, 128, 0.2);
   border-radius: 15px; /* add rounded corners */
@@ -240,6 +247,12 @@
 }
 
 #myBooks:hover {
+  background-color: rgba(128, 128, 128, 0.2);
+  border-radius: 15px; /* add rounded corners */
+  transition: background-color 0.5s;
+}
+
+#logIn:hover {
   background-color: rgba(128, 128, 128, 0.2);
   border-radius: 15px; /* add rounded corners */
   transition: background-color 0.5s;
@@ -283,13 +296,66 @@ ul {
   margin-left: -35px;
 }
 
+/* Wrapper */
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f7f7f7;
+}
 
+/* Title */
+.login-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
 
+/* Input fields */
+.login-input {
+  border: 1px solid #61BC7C;
+  height: 30px;
+  width: 500px;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  border-radius: 15px; /* add rounded corners */
+}
 
+/* Submit button */
+.login-submit {
+  background-color: #61BC7C;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 15px; /* add rounded corners */
+  width: 520px;
+}
 
+.register-submit{
+  background-color: #61BC7C;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 15px; /* add rounded corners */
+  margin-top: 15px;
+  width: 520px;
+}
 
+.login-submit:hover {
+  background-color: #449d5c;
+}
 
-
+.register-submit:hover {
+  background-color: #449d5c;
+}
 
 
 

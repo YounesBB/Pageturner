@@ -11,6 +11,8 @@ const {
 
 const router = express.Router()
 
+const { protect } = require('../middleware/authMiddleware')
+
 //GET all authors
 router.get('/', getAuthors)
 
@@ -21,7 +23,7 @@ router.get('/:id', getAuthor)
 router.get('/fullname/:name', getAuthorByFullName)
 
 //POST a new author
-router.post('/', addAuthor)
+router.post('/', protect, addAuthor)
 
 //DELETE an author 
 router.delete('/:id', deleteAuthor)

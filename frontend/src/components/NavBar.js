@@ -36,6 +36,9 @@ export const NavBar = ({ handleToggleTheme, isDarkMode }) => {
           <li id="myBooks">
             <NavItem link="/mybooks" label="My Books" />
           </li>
+          <li id="logIn">
+            <NavItem link="/login" label="Log in" />
+          </li>
           <li id="toggle">
             <Toggle
               onChange={handleToggleTheme}
