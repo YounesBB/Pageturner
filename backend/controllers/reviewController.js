@@ -44,8 +44,59 @@ const createReview = asyncHandler(async (req, res) => {
   });
 });
 
+// @desc    GET all reviews for a specific book
+// @route   GET /reviews/:bookId
+// @access  Public
+const getAllReviewByBook = asyncHandler(async (req, res) => {
+  const bookId = req.params.id;
+
+  // Find all reviews for the given book ID
+  const reviews = await Review.find({ book: bookId }).populate('user');
+
+  // Return the reviews to the client
+  res.status(200).json(reviews);
+});
+
+// @desc    GET all reviews
+// @route   GET /reviews
+// @access  Public
+const getAllReviews = asyncHandler(async (req, res) => {
+  // Find all reviews in the database
+  const reviews = await Review.find().populate('user');
+
+  // Return the reviews to the client
+  res.status(200).json(reviews);
+});
+
+// @desc    DELETE a review by ID
+// @route   DELETE /reviews/:id
+// @access  Private/Admin
+const deleteReview = asyncHandler(async (req, res) => {
+  const reviewId = req.params.id;
+
+  // Find the review in the database
+  const review = await Review.findById(reviewId);
+
+  if (!review) {
+    res.status(404);
+    throw new Error('Review not found');
+  }
+
+  // Delete the review from the database
+  await review.remove();
+
+  // Return a success message to the client
+  res.status(200).json({ message: 'Review deleted successfully' });
+});
+
+
+
+
 module.exports = {
-  createReview
+  createReview, 
+  getAllReviewByBook,
+  getAllReviews, 
+  deleteReview
 }
 
 
