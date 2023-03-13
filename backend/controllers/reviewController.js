@@ -5,7 +5,6 @@ const mongoose = require('mongoose')
 const asyncHandler = require('express-async-handler');
 
 
-
 // @desc    POST a review
 // @route   POST /review
 // @access  Public
@@ -88,9 +87,6 @@ const deleteReview = asyncHandler(async (req, res) => {
   // Return a success message to the client
   res.status(200).json({ message: 'Review deleted successfully' });
 });
-
-
-
 
 module.exports = {
   createReview, 
