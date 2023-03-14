@@ -1,39 +1,25 @@
 
-
-export const DisplayBook = ({ book, onResetBook }) => {
+import { Star24Regular } from '@fluentui/react-icons'
+export const DisplayBook = ({ book }) => {
 
     if (book === null) {
         return null
     }
 
     return (
-
-        <div>
-
-            <h1>
-                {book.title}
-            </h1>
-            <img src={book.coverImage} width={160} height={230} />
-            <body>
-                <h1>
-                    Author: {book.author}
-                </h1>
-                <h1>
-                    Release Year: {book.releaseYear}
-                </h1>
-                <h2>
-                    Genre: {book.genre}
-                </h2>
-                <h2>
-                    <p>Description: {book.description}</p>
-                </h2>
-                <h2>
-                    Pages: {book.pages}
-                </h2>
-            </body>
-
-
-        </div>
-
+        <section style={{ display: 'flex', flexDirection: 'row', gap: '10px', justifyContent: 'left', alignItems: 'left', paddingRight: '500px' }}>
+            
+            <img src={book.coverImage} alt={book.title} style={{ width: 160, height: 250 }} />
+            <div style={{ padding: '20px',  justifyContent: 'left', alignItems: 'left', borderRadius: '10px', maxWidth: '500px', display: 'flex', flexDirection: 'column', border: 'none', backgroundColor: 'rgba(128, 128, 128, 0.1)'}}>
+                <div>
+                <h2 style={{ marginBottom: '10px'}}>{book.title}</h2>
+                <p style={{ marginBottom: '5px' }}>{book.author}</p>
+                <p style={{ marginBottom: '5px' }}>{book.releaseYear}</p>
+                <p style={{ marginBottom: '10px' }}>{book.description}</p>
+                <p style={{ marginBottom: '10px' }}>Pages: {book.pages}</p>
+                {/* <p style={{ marginBottom: '10px' }}>Average rating: </p> */}
+                </div>
+            </div>
+        </section>
     )
 }

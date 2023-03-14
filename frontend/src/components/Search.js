@@ -26,7 +26,7 @@ export const Search = ({ onSearchChange }) => {
 
   return (
     <div id="searchField">
-      <h1>
+      <h1> 
         <input
           id="searchInput"
           type="text"
