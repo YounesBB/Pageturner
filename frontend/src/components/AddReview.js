@@ -34,39 +34,10 @@ const useStyles = makeStyles({
 export const AddReview = ({ book, onAddReview }) => {
     const styles = useStyles()
     const [isDialogOpen, setIsDialogOpen] = useState(false)
-    const [isRatingValid, setIsRatingValid] = useState(true);
-    const [isCommentValid, setIsCommentValid] = useState(true);
-    const [rating, setRating] = useState("");
-    const [comment, setComment] = useState("");
-    // initially set state to an empty array
-
-    // function that handles 'submit' button. When clicked, inputed review should be added to review list, and dialog is closed.
-    const handleSubmit = async (ev) => {
-
-        // ev.preventDefault()
-        // const bookInfo = await fetchBookInfo(bookTitle, bookAuthor)
-        // let coverImage = "", isbn = ""
-        // if (bookInfo) {
-        //     coverImage = bookInfo.coverImage
-        //     isbn = bookInfo.isbn
-        // }
-        // if (!isbn) {
-        //     //generate fake isbn
-        //     isbn = `noisbn-${Math.floor(Math.random() * 1000000000)}`
-        // }
-        // onAddBook(bookTitle, bookAuthor, releaseYear, bookGenre, bookDescription, pages, coverImage, isbn)
-        // setIsDialogOpen(false)
-        //  console.log(coverImage)
-        //  console.log(isbn)
-        // newBook(bookTitle, bookAuthor, releaseYear, bookGenre, bookDescription, pages, coverImage, isbn)
-        //     .then((data) => {
-        //         // update the books state with the new book
-        //         // call the onAddBook function to update the parent component's state
-        //     })
-        //     .catch((error) => {
-        //         console.error(error)
-        //     })
-    }
+    const [isRatingValid, setIsRatingValid] = useState(true)
+    const [isCommentValid, setIsCommentValid] = useState(true)
+    const [rating, setRating] = useState("")
+    const [comment, setComment] = useState("")
 
     // function for closing dialog. Called when 'Cancel' button is clicked
     const handleDismiss = () => {
@@ -93,7 +64,8 @@ export const AddReview = ({ book, onAddReview }) => {
         return value.trim().split(" ").length > 0;
     };
 
-    const handleSave = () => {
+    const handleSave = async(ev) => {
+        ev.preventDefault()
         if ((!rating) && !comment && !validateInput(comment)) {
             setIsRatingValid(false);
             setIsCommentValid(false);
@@ -107,11 +79,10 @@ export const AddReview = ({ book, onAddReview }) => {
             setIsCommentValid(false)
             return;
         }
-        onAddReview(book._id, "abc123", rating, comment)
+        onAddReview(book._id, "640726ca3f24fb931abd00b9", rating, comment)
         setIsDialogOpen(false)
-        // addReview(book._id, "abc123", rating, comment)
-        createReview(book._id, "abc123", rating, comment)
-            .then(() => {
+        createReview(book._id, "640726ca3f24fb931abd00b9", rating, comment)
+            .then((data) => {
                 // update the books state with the new book
                 // call the onAddBook function to update the parent component's state
             })
@@ -189,7 +160,7 @@ export const AddReview = ({ book, onAddReview }) => {
                 </DialogSurface>
             </Dialog>
         </>
-    );
+    )
 }
 
 

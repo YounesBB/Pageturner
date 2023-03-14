@@ -40,12 +40,12 @@ export const NavBar = ({ handleToggleTheme, isDarkMode }) => {
             <NavItem link="/login" label="Log in" />
           </li>
           <li id="toggle">
-            <Toggle
+          <Toggle
               onChange={handleToggleTheme}
               checked={isDarkMode}
-              onText="Dark"
-              offText="Light"
-              style={{ backgroundColor: isDarkMode ? '#225332' : 'white', color: isDarkMode ? '#fff' : '#333' }}
+              onText={<span style={{ color: isDarkMode ? 'white' : 'inherit' }}>Dark</span>}
+              offText={<span style={{ color: isDarkMode ? 'inherit' : 'black' }}>Light</span>}
+              style={{ backgroundColor: isDarkMode ? '#225332' : 'white' }}
             />
           </li>
         </ul>

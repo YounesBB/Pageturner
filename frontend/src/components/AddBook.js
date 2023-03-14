@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import { useState } from "react"
 import { newBook } from "../api/books"
 import {
     Dialog,
@@ -26,7 +26,6 @@ const useStyles = makeStyles({
     },
 })
 
-
 //Add Book component that let's us add a book to our library when clicking 'AddBook' button
 
 export const AddBook = ({ onAddBook }) => {
@@ -38,7 +37,6 @@ export const AddBook = ({ onAddBook }) => {
     const [bookGenre, setBookGenre] = useState('')
     const [bookDescription, setBookDescription] = useState('')
     const [pages, setPages] = useState('')
-     // initially set state to an empty array
 
     // function that handles 'submit' button. When clicked, inputed book should be added, and dialog is closed.
      const handleSubmit = async(ev) => {
@@ -71,9 +69,6 @@ export const AddBook = ({ onAddBook }) => {
     const handleDismiss = () => {
         setIsDialogOpen(false)
     }
-
-    
-
 
     // logic for when dialog is opened, and what dialog should display
     return (
@@ -128,7 +123,7 @@ export const AddBook = ({ onAddBook }) => {
                 </DialogSurface>
             </Dialog>
         </>
-    );
+    )
 }
 
 

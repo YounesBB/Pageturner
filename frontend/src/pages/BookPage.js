@@ -5,7 +5,7 @@ import { getBookByISBN } from "../api/books";
 import { DisplayBook } from "../components/DisplayBook"
 import { AddReview } from "../components/AddReview"
 import { ReviewList } from "../components/ReviewList"
-import { getAllReviewByBook, getReviews } from "../api/reviews"
+import { getAllReviewByBook } from "../api/reviews"
 
 export const BookPage = () => {
   const { isbn } = useParams()
