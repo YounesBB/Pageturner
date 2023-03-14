@@ -17,8 +17,7 @@ import {
 } from "@fluentui/react-components"
 import { BookAdd24Regular } from "@fluentui/react-icons"
 import { CompoundButton } from "@fluentui/react-components"
-import { fetchBookInfo } from "../api/bookCover"
-import {addReview} from "../api/reviews"
+import { createReview } from "../api/reviews"
 
 
 const useStyles = makeStyles({
@@ -32,7 +31,7 @@ const useStyles = makeStyles({
 
 //Add Book component that let's us add a book to our library when clicking 'AddBook' button
 
-export const AddReview = ({onAddReview}) => {
+export const AddReview = ({ book, onAddReview }) => {
     const styles = useStyles()
     const [isDialogOpen, setIsDialogOpen] = useState(false)
     const [isRatingValid, setIsRatingValid] = useState(true);
@@ -94,10 +93,6 @@ export const AddReview = ({onAddReview}) => {
         return value.trim().split(" ").length > 0;
     };
 
-    const newReview = (rating, review) => {
-
-    }
-
     const handleSave = () => {
         if ((!rating) && !comment && !validateInput(comment)) {
             setIsRatingValid(false);
@@ -112,10 +107,18 @@ export const AddReview = ({onAddReview}) => {
             setIsCommentValid(false)
             return;
         }
-        onAddReview(rating, comment)
+        onAddReview(book._id, "abc123", rating, comment)
         setIsDialogOpen(false)
-        addReview(rating, comment)
-        
+        // addReview(book._id, "abc123", rating, comment)
+        createReview(book._id, "abc123", rating, comment)
+            .then(() => {
+                // update the books state with the new book
+                // call the onAddBook function to update the parent component's state
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+
     }
 
     // logic for when dialog is opened, and what dialog should display

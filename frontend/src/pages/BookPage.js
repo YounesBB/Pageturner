@@ -5,7 +5,7 @@ import { getBookByISBN } from "../api/books";
 import { DisplayBook } from "../components/DisplayBook"
 import { AddReview } from "../components/AddReview"
 import { ReviewList } from "../components/ReviewList"
-import { getReviews } from "../api/reviews"
+import { getAllReviewByBook, getReviews } from "../api/reviews"
 
 export const BookPage = () => {
   const { isbn } = useParams()
@@ -16,22 +16,22 @@ export const BookPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const book = await getBookByISBN(isbn);
-      setBook(book);
-      console.log(book)
+      const book = await getBookByISBN(isbn)
+      setBook(book)
+      console.log("BOOKID", book._id)
+      const reviews = await getAllReviewByBook(book._id)
+      console.log("REVIEWS", reviews)
+      if (reviews) {
+        setReviews(reviews)
+      }
     }
     fetchData()
   }, [])
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setReviews(getReviews)
-    }
-    fetchData()
-  }, [])
-
-  const handleAddReview = (rating, comment) => {
+  const handleAddReview = (bookID, userID, rating, comment) => {
     const newReview = {
+      bookID: bookID,
+      userID: userID,
       rating: rating,
       comment: comment
     };
@@ -44,12 +44,10 @@ export const BookPage = () => {
 
   const element = book ? <DisplayBook book={book} /> : null
 
-
-
   return (
     <div >
       {element}
-      <AddReview onAddReview={handleAddReview}/>
+      <AddReview book={book} onAddReview={handleAddReview}/>
       <ReviewList reviews={reviews} />
     </div>
   )

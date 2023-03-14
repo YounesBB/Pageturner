@@ -51,7 +51,7 @@ const getAllReviewByBook = asyncHandler(async (req, res) => {
 
   // Find all reviews for the given book ID
   const reviews = await Review.find({ book: bookId }).populate('user');
-
+console.log("Backend reviews", reviews)
   // Return the reviews to the client
   res.status(200).json(reviews);
 });

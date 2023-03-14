@@ -2,6 +2,7 @@
 import { Star24Regular } from '@fluentui/react-icons'
 export const ReviewList = ({ reviews }) => {
 
+    console.log("Review list", reviews)
     return (
 
         <div style={{ display: 'flex', flexDirection: 'column', marginTop: '50px' }}>
