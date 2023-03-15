@@ -1,21 +1,36 @@
 import { webDarkTheme, webLightTheme } from "@fluentui/react-components";
-import { Link, useNavigate  } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { useContext } from "react";
 import logo from "../Logo1Light.png"
 import logoDark from "../Logo1.png"
 import { Search } from "./Search";
 import React from "react";
 import { Toggle } from '@fluentui/react';
-const NavItem = ({link, label}) => {
+import { AuthContext } from "../context/AuthProvider";
+const NavItem = ({ link, label }) => {
   return (
-    <div  id="navitem">
+    <div id="navitem">
       <Link to={link}> {label} </Link>
     </div>
   )
 }
 
+
 export const NavBar = ({ handleToggleTheme, isDarkMode }) => {
   const history = useNavigate();
-  
+  const { isLoggedIn, logout } = useContext(AuthContext);
+  const handleClick = () => {
+    if (!isLoggedIn) {
+      history("/login");
+    }
+  };
+  const handleLogout = () => {
+    if (isLoggedIn) {
+      logout();
+      history("/");
+    }
+  }
+
   return (
     <>
       <nav id={isDarkMode ? "navbarBlack" : "navbar"}>
@@ -34,19 +49,26 @@ export const NavBar = ({ handleToggleTheme, isDarkMode }) => {
             </li>
           </div>
           <li id="myBooks">
-            <NavItem link="/mybooks" label="My Books" />
+            <div onClick={handleClick}>
+              <NavItem link="/mybooks" label="My Books" />
+            </div>
           </li>
           <li id="logIn">
             <NavItem link="/login" label="Log in" />
           </li>
           <li id="toggle">
-          <Toggle
+            <Toggle
               onChange={handleToggleTheme}
               checked={isDarkMode}
               onText={<span style={{ color: isDarkMode ? 'white' : 'inherit' }}>Dark</span>}
               offText={<span style={{ color: isDarkMode ? 'inherit' : 'black' }}>Light</span>}
               style={{ backgroundColor: isDarkMode ? '#225332' : 'white' }}
             />
+          </li>
+          <li id="logOut">
+            <div onClick={handleLogout}>
+              <NavItem link="/" label="Log out" />
+            </div>
           </li>
         </ul>
       </nav>
