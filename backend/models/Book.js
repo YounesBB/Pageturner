@@ -31,14 +31,22 @@ const bookSchema = mongoose.Schema(
             type: String,
             required: true
         },
-        user: {
+        /*user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
             required: true
-        },
+        },*/
         isbn: {
             type: String, 
             required: true
+        },
+        ratingSum: {
+            type: Number,
+            default: 0
+            },
+        ratingCount: {
+            type: Number,
+            default: 0
         }
     },
     { timestamps: true }

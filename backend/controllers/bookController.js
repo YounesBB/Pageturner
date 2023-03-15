@@ -24,6 +24,8 @@ const getAllBooks = asynHandler(async (req, res) => {
             pages: book.pages,
             coverImage: book.coverImage,
             isbn: book.isbn,
+            ratingSum: book.ratingSum,
+            ratingCount: book.ratingCount,
             createdAt: book.createdAt,
             updatedAt: book.updatedAt,
             __v: book.__v
@@ -81,6 +83,8 @@ const getBookById = asynHandler(async (req, res) => {
           pages: book.pages,
           coverImage: book.coverImage,
           isbn: book.isbn,
+          ratingSum: book.ratingSum,
+          ratingCount: book.ratingCount,
           createdAt: book.createdAt,
           updatedAt: book.updatedAt,
           __v: book.__v
@@ -117,6 +121,8 @@ const getBookByTitle = asynHandler(async (req, res) => {
         pages: book.pages,
         coverImage: book.coverImage,
         isbn: book.isbn,
+        ratingSum: book.ratingSum,
+        ratingCount: book.ratingCount,
         createdAt: book.createdAt,
         updatedAt: book.updatedAt,
         __v: book.__v
@@ -149,6 +155,8 @@ const getBookByISBN = asynHandler(async (req, res) => {
       description: book.description,
       pages: book.pages,
       coverImage: book.coverImage,
+      ratingSum: book.ratingSum,
+      ratingCount: book.ratingCount,
       createdAt: book.createdAt,
       updatedAt: book.updatedAt,
       __v: book.__v
@@ -196,7 +204,7 @@ const createNewBook = asynHandler(async (req, res) => {
 // @access  Public
 const updateBook = asynHandler(async (req, res) => {
     const { id } = req.params
-    const { title, author, releaseYear, genre, description, pages, coverImage, isbn } = req.body
+    const { title, author, releaseYear, genre, description, pages, coverImage, isbn, ratingSum, ratingCount } = req.body
 
   const book = await Book.findById(id).exec()
 
@@ -212,13 +220,14 @@ const updateBook = asynHandler(async (req, res) => {
   }
 
     book.title = title
-    book.author = author
     book.releaseYear = releaseYear
     book.genre = genre
     book.description = description
     book.pages = pages
     book.coverImage = coverImage
     book.isbn = isbn
+    book.ratingSum = ratingSum
+    book.ratingCount = ratingCount
 
   const updatedBook = await book.save()
   res.json(`'${updatedBook.title}' updated`)

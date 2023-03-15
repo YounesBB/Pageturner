@@ -11,7 +11,7 @@ const {
     deleteBookByTitle
   } = require('../controllers/bookController')
 
-const { protect } = require('../middleware/authMiddleware')
+//const { protect } = require('../middleware/authMiddleware')
 
 // Get all books
 router.get('/', getAllBooks)
@@ -26,7 +26,7 @@ router.get('/isbn/:isbn', getBookByISBN)
 router.get('/title/:title', getBookByTitle)
 
 // Create a new book
-router.post('/', protect, createNewBook)
+router.post('/', /*protect,*/ createNewBook)
 
 // Update a book
 router.patch('/:id', updateBook)
