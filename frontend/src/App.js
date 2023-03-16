@@ -6,6 +6,7 @@ import { SearchPage } from "./pages/SearchPage";
 import { BookPage } from "./pages/BookPage";
 import { MyBooks } from "./pages/MyBooks";
 import { LogInPage } from "./pages/LogInPage";
+import { AddBookPage } from "./pages/AddBookPage";
 import "./index.css";
 import { useState } from "react";
 import { FluentProvider, webLightTheme, webDarkTheme } from "@fluentui/react-components";
@@ -58,6 +59,7 @@ export const App = () => {
               <Route path="/mybooks" element={<MyBooks />} />
               <Route path="/mybooks/:isbn" element= {<BookPage/>}/>
               <Route path="/login" element={<LogInPage />} />
+              <Route path="/addbook" element={<AddBookPage />} />
               <Route />
             </Routes>
           </AppPage>
