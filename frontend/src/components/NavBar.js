@@ -38,11 +38,11 @@ export const NavBar = ({ handleToggleTheme, isDarkMode }) => {
           <li id="myBooks">
             <NavItem link="/mybooks" label="My Ratings" />
           </li>
-          <li id="logIn">
-            <NavItem link="/login" label="Log in" />
-          </li>
           <li id="addBook">
             <NavItem link="/addbook" label="Add Book" />
+          </li>
+          <li id="logIn">
+            <NavItem link="/login" label="Log in" />
           </li>
           <li id="toggle">
             <Toggle

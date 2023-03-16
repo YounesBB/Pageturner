@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { BookOpen24Regular, CalendarLtr24Regular, PersonEdit24Regular } from "@fluentui/react-icons"
+import { BookOpen24Regular, CalendarLtr24Regular, PersonEdit24Regular, Star24Filled } from "@fluentui/react-icons"
 import {
     TableBody,
     TableRow,
@@ -18,6 +18,7 @@ const columns = [
     { columnKey: "title", label: "Book title", icon: <BookOpen24Regular /> },
     { columnKey: "author", label: "Author", icon: <PersonEdit24Regular /> },
     { columnKey: "releaseYear", label: "Release Year", icon: <CalendarLtr24Regular /> },
+    { columnKey: "averageRating", label: "PageTurner Rating", icon: <Star24Filled style={{ color: "f3ce13" }} /> },
   ];
 
 export const BookList = ({books}) => {
@@ -30,6 +31,7 @@ export const BookList = ({books}) => {
         console.log("click book", book)
         setCurrentBook(book)
         window.location.href = "/mybooks/" + book.isbn
+
     }
     
     // sets current book to null
@@ -37,12 +39,6 @@ export const BookList = ({books}) => {
     const handleResetBook = () => {
         setCurrentBook(null)
     }
-
-    // const migrateBooks = () => {
-    //     books.forEach(book => {
-    //        setNewBook(book)
-    //     })
-    // }
 
     // logic for displaying list of books using a table
     return (
