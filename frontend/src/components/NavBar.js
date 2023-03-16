@@ -7,11 +7,10 @@ import { Search } from "./Search";
 import React from "react";
 import { Toggle } from '@fluentui/react';
 import { AuthContext } from "../context/AuthProvider";
-import { AddBook } from "./AddBook"
+import { AddBook } from "./AddBook";
 
-const NavItem = ({  link, label  }) => {
+const NavItem = ({ link, label }) => {
   return (
-    <div id="navitem">
     <div id="navitem">
       <Link to={link}> {label} </Link>
     </div>
