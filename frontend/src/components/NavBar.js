@@ -7,8 +7,11 @@ import { Search } from "./Search";
 import React from "react";
 import { Toggle } from '@fluentui/react';
 import { AuthContext } from "../context/AuthProvider";
-const NavItem = ({ link, label }) => {
+import { AddBook } from "./AddBook"
+
+const NavItem = ({  link, label  }) => {
   return (
+    <div id="navitem">
     <div id="navitem">
       <Link to={link}> {label} </Link>
     </div>
@@ -50,11 +53,14 @@ export const NavBar = ({ handleToggleTheme, isDarkMode }) => {
           </div>
           <li id="myBooks">
             <div onClick={handleClick}>
-              <NavItem link="/mybooks" label="My Books" />
+              <NavItem link="/mybooks" label="My Ratings" />
             </div>
           </li>
           <li id="logIn">
             <NavItem link="/login" label="Log in" />
+          </li>
+          <li id="addBook">
+            <NavItem link="/addbook" label="Add Book" />
           </li>
           <li id="toggle">
             <Toggle

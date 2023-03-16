@@ -8,16 +8,16 @@ const asyncHandler = require('express-async-handler');
 // @route   GET /users
 // @access  Private/Admin
 const getAllUsers = asyncHandler(async (req, res) => {
-    const users = await User.find({}).exec()
-
+    const users = await User.find({}).exec();
+  
     // If no users found
     if (!users?.length) {
-        res.status(400).json({ message: 'No users found' })
+      res.status(400);
+      throw new Error('No users found');
     }
-
-    // Return the users
-    res.status(200).json(users)
-});
+  
+    res.status(200).json(users);
+  });
 
 // @desc    Get a user by id
 // @route   GET /users/:id

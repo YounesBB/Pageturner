@@ -19,6 +19,7 @@ router.get('/:id', getAllReviewByBook)
 router.get('/', getAllReviews)
 
 // DELETE review by id
+//NOTE: this also updates the book's ratingSum and ratingCount :)
 router.delete('/:id', deleteReview)
 
 
