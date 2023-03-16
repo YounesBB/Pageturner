@@ -17,6 +17,7 @@ export const BookRow = ({ book, onBookClick }) => {
             <TableCell>{book.title}</TableCell>
             <TableCell>{book.author}</TableCell>
             <TableCell>{book.releaseYear}</TableCell>
+            <TableCell>{book.ratingCount > 0 ? (book.ratingSum / book.ratingCount).toFixed(1) : 0}</TableCell>
         </TableRow>
     )
 }
