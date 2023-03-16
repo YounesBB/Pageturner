@@ -11,7 +11,7 @@ const {
     deleteBookByTitle
   } = require('../controllers/bookController')
 
-const { protect } = require('../middleware/authMiddleware')
+//const { protect } = require('../middleware/authMiddleware')
 
 // Get all books
 router.get('/', getAllBooks)

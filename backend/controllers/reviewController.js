@@ -35,11 +35,19 @@ const createReview = asyncHandler(async (req, res) => {
   });
   const savedReview = await review.save();
 
-  // Return the saved review with the associated book and user data populated
+  // Update the associated book's ratingSum and ratingCount fields
+  const updatedBook = await Book.findByIdAndUpdate(
+    book,
+    {
+      $inc: { ratingSum: rating, ratingCount: 1 }
+    },
+    { new: true }
+  );
+
+  // Return the saved review and updated book data
   res.status(201).json({
     review: savedReview,
-    book,
-    user
+    book: updatedBook
   });
 });
 
@@ -84,9 +92,24 @@ const deleteReview = asyncHandler(async (req, res) => {
   // Delete the review from the database
   await review.remove();
 
+  // Update the associated book's ratingSum and ratingCount
+  const bookId = review.book;
+  const book = await Book.findById(bookId);
+
+  if (!book) {
+    res.status(404);
+    throw new Error('Book not found');
+  }
+
+  book.ratingSum -= review.rating;
+  book.ratingCount--;
+
+  await book.save();
+
   // Return a success message to the client
   res.status(200).json({ message: 'Review deleted successfully' });
 });
+
 
 module.exports = {
   createReview, 

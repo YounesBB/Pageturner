@@ -39,6 +39,14 @@ const bookSchema = mongoose.Schema(
         isbn: {
             type: String, 
             required: true
+        },
+        ratingSum: {
+            type: Number,
+            default: 0
+            },
+        ratingCount: {
+            type: Number,
+            default: 0
         }
     },
     { timestamps: true }
