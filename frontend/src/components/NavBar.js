@@ -55,10 +55,16 @@ export const NavBar = ({ handleToggleTheme, isDarkMode }) => {
               <NavItem link="/mybooks" label="My Ratings" />
             </div>
           </li>
-          <li id="logIn">
-            <NavItem link="/login" label="Log in" />
-          </li>
-          <li id="addBook">
+          {isLoggedIn ? (
+            <li id="logOut" onClick={handleLogout}>
+              <NavItem link="/" label="Log out" />
+            </li>
+          ) : (
+            <li id="logIn">
+              <NavItem link="/login" label="Log in" />
+            </li>
+          )}
+          <li id="addBook" onClick={handleClick}>
             <NavItem link="/addbook" label="Add Book" />
           </li>
           <li id="toggle">
@@ -69,11 +75,6 @@ export const NavBar = ({ handleToggleTheme, isDarkMode }) => {
               offText={<span style={{ color: isDarkMode ? 'inherit' : 'black' }}>Light</span>}
               style={{ backgroundColor: isDarkMode ? '#225332' : 'white' }}
             />
-          </li>
-          <li id="logOut">
-            <div onClick={handleLogout}>
-              <NavItem link="/" label="Log out" />
-            </div>
           </li>
         </ul>
       </nav>

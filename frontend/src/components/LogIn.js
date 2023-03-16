@@ -59,13 +59,19 @@ import React, { useState, useContext } from "react";
 import { loginUser, registerUser } from "../api/users";
 import AuthContext from "../context/AuthProvider";
 import { useNavigate } from 'react-router-dom';
-
+import ThemeContext from "../context/ThemeContext";
 export function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { isDarkMode } = useContext(ThemeContext);
 
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const containerStyle = {
+    backgroundColor: isDarkMode ? "#292929" : "white",
+    color: isDarkMode ? "white" : "#292929",
+  };
 
   const handleLogin = async () => {
     try {
@@ -80,7 +86,7 @@ export function LogIn() {
 
   return (
     <>
-      <div className="login-wrapper">
+      <div className="login-wrapper" style={containerStyle}>
         <h1 className="login-title">
           {"Log in"}
         </h1>

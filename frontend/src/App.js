@@ -14,6 +14,7 @@ import { mergeStyles } from "@fluentui/react";
 import { useEffect } from "react";
 import PrivateRoute from './context/PrivateRoute';
 import { RegisterPage } from "./pages/RegisterPage";
+import ThemeContext from "./context/ThemeContext";
 
 
 const updateBackgroundColors = (isDarkMode) => {
@@ -55,18 +56,20 @@ export const App = () => {
       <div className="App_page">
         <FluentProvider theme={isDarkMode ? webDarkTheme : webLightTheme}>
           <NavBar handleToggleTheme={handleToggleTheme} isDarkMode={isDarkMode} />
-          <AppPage>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/search" element={<SearchPage />} />
-              <Route path="/mybooks" element={<MyBooks />} />
-              <Route path="/mybooks/:isbn" element={<BookPage />} />
-              <Route path="/login" element={<LogInPage />} />
-              <Route path="/register" element={<RegisterPage />} />
-              <Route path="/addbook" element={<AddBookPage />} />
-              <Route />
-            </Routes>
-          </AppPage>
+          <ThemeContext.Provider value={{ isDarkMode }}>
+            <AppPage>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/search" element={<SearchPage />} />
+                <Route path="/mybooks" element={<MyBooks />} />
+                <Route path="/mybooks/:isbn" element={<BookPage />} />
+                <Route path="/login" element={<LogInPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/addbook" element={<AddBookPage />} />
+                <Route />
+              </Routes>
+            </AppPage>
+          </ThemeContext.Provider>
         </FluentProvider>
       </div>
     </>

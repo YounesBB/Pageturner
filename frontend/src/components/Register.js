@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { loginUser, registerUser } from "../api/users";
 import AuthContext from "../context/AuthProvider";
 import { useNavigate } from 'react-router-dom';
+import ThemeContext from "../context/ThemeContext";
 
 export function Register() {
     const [email, setEmail] = useState("");
@@ -9,6 +10,12 @@ export function Register() {
     const [name, setName] = useState("");
     const auth = useContext(AuthContext);
     const navigate = useNavigate();
+    const { isDarkMode } = useContext(ThemeContext);
+
+    const containerStyle = {
+        backgroundColor: isDarkMode ? "#292929" : "white",
+        color: isDarkMode ? "white" : "#292929",
+    };
 
 
     const handleRegister = async () => {
@@ -25,7 +32,7 @@ export function Register() {
 
     return (
         <>
-            <div className="register-wrapper">
+            <div className="register-wrapper" style={containerStyle}>
                 <h1 className="register-title">
                     Register your account
                 </h1>
