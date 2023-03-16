@@ -39,22 +39,32 @@ export const loginUser = async (username, password) => {
     });
     return response.data.token;
   } catch (error) {
-    console.error(error);
-    throw new Error("Invalid email or password");
+    if (error.response) {
+      // The request was made and the server responded with a status code outside the 2xx range
+      throw new Error(error.response.data.message);
+    } else {
+      // Something happened in setting up the request that triggered an error
+      throw new Error("Invalid email or password");
+    }
   }
 };
 
 export const registerUser = async (name, email, password) => {
   try {
-    const response = await axios.post(`${baseUrl}/users/`, {
+    const response = await axios.post(`${baseUrl}/users/register`, {
       name,
       email,
       password
     });
     return response.data.token;
   } catch (error) {
-    console.error(error);
-    throw new Error("Unable to register user");
+    if (error.response) {
+      // The request was made and the server responded with a status code outside the 2xx range
+      throw new Error(error.response.data.message);
+    } else {
+      // Something happened in setting up the request that triggered an error
+      throw new Error("Unable to register user");
+    }
   }
 };
 

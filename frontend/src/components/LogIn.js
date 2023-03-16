@@ -63,6 +63,7 @@ import ThemeContext from "../context/ThemeContext";
 export function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const { isDarkMode } = useContext(ThemeContext);
 
   const auth = useContext(AuthContext);
@@ -80,7 +81,7 @@ export function LogIn() {
       navigate('/');
     } catch (error) {
       console.error(error);
-      // handle error here
+      setErrorMessage(error.message);
     }
   };
 
@@ -90,6 +91,7 @@ export function LogIn() {
         <h1 className="login-title">
           {"Log in"}
         </h1>
+        {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Display the error message */}
         <>
           <input
             className="login-input"

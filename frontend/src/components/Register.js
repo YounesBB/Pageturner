@@ -8,6 +8,7 @@ export function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
     const auth = useContext(AuthContext);
     const navigate = useNavigate();
     const { isDarkMode } = useContext(ThemeContext);
@@ -26,7 +27,7 @@ export function Register() {
             navigate('/');
         } catch (error) {
             console.error(error);
-            // handle error here
+            setErrorMessage(error.message);
         }
     };
 
@@ -36,6 +37,7 @@ export function Register() {
                 <h1 className="register-title">
                     Register your account
                 </h1>
+                {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Display the error message */}
                 <input
                     className="register-input"
                     type="text"
