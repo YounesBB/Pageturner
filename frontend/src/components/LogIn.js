@@ -63,8 +63,7 @@ import { useNavigate } from 'react-router-dom';
 export function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [isRegistering, setIsRegistering] = useState(false);
+
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -79,110 +78,43 @@ export function LogIn() {
     }
   };
 
-  const handleRegistration = async () => {
-    try {
-      const user = await registerUser(name, email, password);
-      const token = await loginUser(email, password);
-      auth.login(token);
-      navigate('/');
-    } catch (error) {
-      console.error(error);
-      // handle error here
-    }
-  };
-
-  const toggleRegistration = (e) => {
-    e.preventDefault();
-    setIsRegistering(!isRegistering);
-  };
-
-  const LoginForm = () => {
-    return (
-      <>
-        <input
-          className="login-input"
-          type="email"
-          id="email"
-          name="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          placeholder="Email"
-          autoFocus
-        />
-        <br></br>
-        <input
-          className="login-input"
-          type="password"
-          id="password"
-          name="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          placeholder="Password"
-        />
-        <br></br>
-        <button className="login-submit" onClick={handleLogin}>
-          Log in
-        </button>
-        <br></br>
-        <button onClick={toggleRegistration}>Register</button>
-      </>
-    );
-  };
-
-  const RegistrationForm = () => {
-    return (
-      <>
-        <input
-          className="register-input"
-          type="text"
-          id="name"
-          name="name"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          placeholder="Name"
-          autoFocus
-        />
-        <br></br>
-        <input
-          className="register-input"
-          type="email"
-          id="email"
-          name="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          placeholder="Email"
-        />
-        <br></br>
-        <input
-          className="register-input"
-          type="password"
-          id="password"
-          name="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          placeholder="Password"
-        />
-        <br></br>
-        <button className="register-submit" onClick={handleRegistration}>
-          Register
-        </button>
-        <br></br>
-        <button onClick={toggleRegistration}>Back to Log in</button>
-      </>
-    );
-  };
-
   return (
     <>
       <div className="login-wrapper">
         <h1 className="login-title">
-          {isRegistering ? "Register" : "Log in"}
+          {"Log in"}
         </h1>
-        {isRegistering ? (
-          <RegistrationForm />
-        ) : (
-          <LoginForm />
-        )}
+        <>
+          <input
+            className="login-input"
+            type="email"
+            id="email"
+            name="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            placeholder="Email"
+            autoFocus
+          />
+          <br></br>
+          <input
+            className="login-input"
+            type="password"
+            id="password"
+            name="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            placeholder="Password"
+            autoFocus
+          />
+          <br></br>
+          <button className="login-submit" onClick={handleLogin}>
+            Log in
+          </button>
+
+          <button id="registerNow" onClick={() => navigate("/register")}>
+            Register
+          </button>
+        </>
       </div>
     </>
   );

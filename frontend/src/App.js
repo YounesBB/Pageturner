@@ -12,6 +12,8 @@ import { FluentProvider, webLightTheme, webDarkTheme } from "@fluentui/react-com
 import { mergeStyles } from "@fluentui/react";
 import { useEffect } from "react";
 import PrivateRoute from './context/PrivateRoute';
+import { RegisterPage } from "./pages/RegisterPage";
+
 
 const updateBackgroundColors = (isDarkMode) => {
   document.body.style.backgroundColor = isDarkMode ? "#292929" : "white";
@@ -59,6 +61,8 @@ export const App = () => {
               <Route path="/mybooks" element={<MyBooks />} />
               <Route path="/mybooks/:isbn" element={<BookPage />} />
               <Route path="/login" element={<LogInPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route />
             </Routes>
           </AppPage>
         </FluentProvider>
