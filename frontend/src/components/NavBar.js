@@ -1,13 +1,15 @@
 import { webDarkTheme, webLightTheme } from "@fluentui/react-components";
-import { Link, useNavigate  } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import logo from "../Logo1Light.png"
 import logoDark from "../Logo1.png"
 import { Search } from "./Search";
 import React from "react";
 import { Toggle } from '@fluentui/react';
-const NavItem = ({link, label}) => {
+import { AddBook } from "./AddBook"
+
+const NavItem = ({ link, label }) => {
   return (
-    <div  id="navitem">
+    <div id="navitem">
       <Link to={link}> {label} </Link>
     </div>
   )
@@ -15,7 +17,7 @@ const NavItem = ({link, label}) => {
 
 export const NavBar = ({ handleToggleTheme, isDarkMode }) => {
   const history = useNavigate();
-  
+
   return (
     <>
       <nav id={isDarkMode ? "navbarBlack" : "navbar"}>
@@ -34,13 +36,16 @@ export const NavBar = ({ handleToggleTheme, isDarkMode }) => {
             </li>
           </div>
           <li id="myBooks">
-            <NavItem link="/mybooks" label="My Books" />
+            <NavItem link="/mybooks" label="My Ratings" />
           </li>
           <li id="logIn">
             <NavItem link="/login" label="Log in" />
           </li>
+          <li id="addBook">
+            <NavItem link="/addbook" label="Add Book" />
+          </li>
           <li id="toggle">
-          <Toggle
+            <Toggle
               onChange={handleToggleTheme}
               checked={isDarkMode}
               onText={<span style={{ color: isDarkMode ? 'white' : 'inherit' }}>Dark</span>}
