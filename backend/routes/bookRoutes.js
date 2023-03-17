@@ -5,6 +5,7 @@ const {
     getBookById,
     getBookByISBN,
     getBookByTitle,
+    getBooksByUser,
     createNewBook,
     updateBook,
     deleteBook, 
@@ -24,6 +25,9 @@ router.get('/isbn/:isbn', getBookByISBN)
 
 // Get a book by title
 router.get('/title/:title', getBookByTitle)
+
+//Get all books that has been reviewed by a user. takes a user id as a parameter. 
+router.get('/user/:id', getBooksByUser)
 
 // Create a new book
 router.post('/', createNewBook)

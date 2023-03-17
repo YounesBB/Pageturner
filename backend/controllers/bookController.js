@@ -1,6 +1,7 @@
 const Book = require('../models/Book');
 const Author = require('../models/Author');
 const User = require('../models/User');
+const Review = require('../models/Review');
 const asynHandler = require('express-async-handler');
 
 // @desc    Get all books
@@ -164,6 +165,23 @@ const getBookByISBN = asynHandler(async (req, res) => {
 
 })
 
+// @desc    Get all books reviewed by a specific user.
+// @param    user id
+// @return   array of books
+// @route   GET /books/user/:id
+// @access  Public
+const getBooksByUser = asynHandler(async (req, res) => {
+  const userId = req.params.id;
+
+  const reviews = await Review.find({ user: userId });
+  const bookIds = reviews.map(review => review.book);
+  const books = await Book.find({ _id: { $in: bookIds } });
+
+  res.json(books);
+});
+
+
+
 // @desc    Create a new book
 // @route   POST /books/
 // @access  Public
@@ -272,6 +290,7 @@ module.exports = {
     getBookById,
     getBookByISBN,
     getBookByTitle,
+    getBooksByUser,
     createNewBook,
     updateBook,
     deleteBook, 
