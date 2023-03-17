@@ -18,7 +18,7 @@ const columns = [
     { columnKey: "title", label: "Book title", icon: <BookOpen24Regular /> },
     { columnKey: "author", label: "Author", icon: <PersonEdit24Regular /> },
     { columnKey: "releaseYear", label: "Release Year", icon: <CalendarLtr24Regular /> },
-    { columnKey: "averageRating", label: "PageTurner Rating", icon: <Star24Filled style={{ color: "f3ce13" }} /> },
+    { columnKey: "averageRating", label: "PageTurner Rating"},
   ];
 
 export const BookList = ({books}) => {

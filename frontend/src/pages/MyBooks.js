@@ -21,7 +21,7 @@ export const MyBooks = () => {
   return (
     <>
       <div className="library-controls">
-        <h1>My library:</h1>
+        <h1>My Ratings</h1>
       </div>
     <div>
       <BookList books={books} />
