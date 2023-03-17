@@ -117,28 +117,8 @@ export const AddReview = ({ book, onAddReview, user }) => {
                         display: "flex",
                         justifyContent: "flex-end"
                     }}>
-                        <CompoundButton
-                            styles={{
-                                root: {
-                                    backgroundColor: "rgba(0, 128, 0, 0.5)",
-                                    border: "none",
-                                    color: "white",
-                                    transition: "all 0.3s ease-in-out",
-                                    padding: "10px 20px",
-                                    borderRadius: "5px",
-                                    boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)"
-                                },
-                                rootHovered: {
-                                    backgroundColor: "rgba(0, 128, 0, 1)",
-                                    cursor: "pointer"
-                                }
-                            }}
-                            icon={<BookAdd24Regular />}
-                            secondaryContent=""
-                            onClick={() => setIsDialogOpen(true)}
-                        >
-                            Add review
-                        </CompoundButton>
+                        <button className="addReview-button" type="addreview" onClick={() => setIsDialogOpen(true)}>
+                            Add Review </button>
                     </div>
                 </DialogTrigger>
                 <DialogSurface aria-describedby={undefined}>

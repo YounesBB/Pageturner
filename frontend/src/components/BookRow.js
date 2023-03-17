@@ -1,4 +1,5 @@
 import { TableCell, TableRow } from "@fluentui/react-components";
+import { Star24Filled } from "@fluentui/react-icons";
 
 
 export const BookRow = ({ book, onBookClick }) => {
@@ -17,6 +18,7 @@ export const BookRow = ({ book, onBookClick }) => {
             <TableCell>{book.title}</TableCell>
             <TableCell>{book.author}</TableCell>
             <TableCell>{book.releaseYear}</TableCell>
+            <TableCell> {<Star24Filled style={{ color: "f3ce13" }} />}        {book.ratingCount > 0 ? (book.ratingSum / book.ratingCount).toFixed(1) : 0} / 10</TableCell>
         </TableRow>
     )
 }
