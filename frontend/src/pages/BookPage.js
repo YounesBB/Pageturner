@@ -1,18 +1,24 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom"
 import { getBookByISBN } from "../api/books";
 import { DisplayBook } from "../components/DisplayBook"
 import { AddReview } from "../components/AddReview"
 import { ReviewList } from "../components/ReviewList"
 import { getAllReviewByBook } from "../api/reviews"
+import AuthContext from "../context/AuthProvider";
+import { getUserProfile } from "../api/users";
+
 
 export const BookPage = () => {
   const { isbn } = useParams()
-
   const [reviews, setReviews] = useState([])
-
   const [book, setBook] = useState(null)
+  const [userProfile, setUserProfile] = useState(null)
+  // USER INFO
+  // const { user } = useContext(AuthContext)
+  // console.log("USER INFO", user)
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,6 +27,12 @@ export const BookPage = () => {
       console.log("BOOKID", book._id)
       const reviews = await getAllReviewByBook(book._id)
       console.log("REVIEWS", reviews)
+      const user = await getUserProfile()
+      setUserProfile(user)
+      console.log("USER", user)
+
+
+
       if (reviews) {
         setReviews(reviews)
       }
@@ -47,7 +59,7 @@ export const BookPage = () => {
   return (
     <div >
       {element}
-      <AddReview book={book} onAddReview={handleAddReview}/>
+      <AddReview book={book} onAddReview={handleAddReview} user={user} />
       <ReviewList reviews={reviews} />
     </div>
   )

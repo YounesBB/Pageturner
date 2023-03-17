@@ -20,6 +20,7 @@ import { CompoundButton } from "@fluentui/react-components"
 import { createReview } from "../api/reviews"
 import { AuthContext } from "../context/AuthProvider"
 import { useNavigate } from "react-router-dom";
+import { getUserProfile } from "../api/users";
 
 const useStyles = makeStyles({
     content: {
@@ -32,7 +33,7 @@ const useStyles = makeStyles({
 
 //Add Book component that let's us add a book to our library when clicking 'AddBook' button
 
-export const AddReview = ({ book, onAddReview }) => {
+export const AddReview = ({ book, onAddReview, user }) => {
     const styles = useStyles()
     const [isDialogOpen, setIsDialogOpen] = useState(false)
     const [isRatingValid, setIsRatingValid] = useState(true)
@@ -41,7 +42,9 @@ export const AddReview = ({ book, onAddReview }) => {
     const [comment, setComment] = useState("")
 
 
-    // TESTING AUTHCONTEXT
+
+
+    //TESTING AUTHCONTEXT
     const { isLoggedIn } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -89,9 +92,11 @@ export const AddReview = ({ book, onAddReview }) => {
             setIsCommentValid(false)
             return;
         }
-        onAddReview(book._id, "640726ca3f24fb931abd00b9", rating, comment)
+
+
+        onAddReview(book._id, user._id, rating, comment)
         setIsDialogOpen(false)
-        createReview(book._id, "640726ca3f24fb931abd00b9", rating, comment)
+        createReview(book._id, user._id, rating, comment)
             .then((data) => {
                 // update the books state with the new book
                 // call the onAddBook function to update the parent component's state
@@ -99,6 +104,7 @@ export const AddReview = ({ book, onAddReview }) => {
             .catch((error) => {
                 console.error(error)
             })
+
 
     }
 

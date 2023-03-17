@@ -139,19 +139,25 @@ const loginUser = asyncHandler(async (req, res) => {
 // @route   GET /users/me
 // @access  Private
 const getMe = asyncHandler(async (req, res) => {
-    const { _id, name, email } = await User.findById(req.user.id)
+    //const { _id, name, email } = await User.findById(req.user.id)
+    const user = req.user;
 
-    res.status(200).json({
-        id: _id,
-        name,
-        email
-    })
+    console.log("BACKEND USER", user)
+    if (user) {
+        res.status(200).json({
+            id: user._id,
+            name: user.name,
+            email: user.email
+        })
+    } else {
+        res.status(400).json({ message: 'User not found' })
+    }
 })
 
 // Generate JWT
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
-        expiresIn: '10m'
+        expiresIn: '24h'
     })
 }
 

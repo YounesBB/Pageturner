@@ -37,6 +37,8 @@ export const loginUser = async (username, password) => {
       email: username,
       password: password
     });
+    console.log('USER', response.data)
+    console.log('Token in loginUser:', response.data.token); // Log the token here
     return response.data.token;
   } catch (error) {
     if (error.response) {
@@ -68,12 +70,27 @@ export const registerUser = async (name, email, password) => {
   }
 };
 
+
 export const getUserProfile = async (token) => {
+  token = token || localStorage.getItem("token");
+  const source = axios.CancelToken.source();
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
+    cancelToken: source.token
   };
-  const response = await axios.get(`${baseUrl}/users/me`, config);
-  return response.data;
+  try {
+    const response = await axios.get(`${baseUrl}/users/me`, config);
+    // console.log("SERVER RESPONS", response)
+    // console.log('GET CURRENT USER', response.data)
+    // console.log('Token in getUserProfile:', token); // Log the token here
+    return response.data;
+  } catch {
+    console.log("ERROR")
+  }
+  return () => source.cancel("Request canceled.");
+
 };
+
+

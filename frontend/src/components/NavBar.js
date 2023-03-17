@@ -55,6 +55,9 @@ export const NavBar = ({ handleToggleTheme, isDarkMode }) => {
               <NavItem link="/mybooks" label="My Ratings" />
             </div>
           </li>
+          <li id="addBook" onClick={handleClick}>
+            <NavItem link="/addbook" label="Add Book" />
+          </li>
           {isLoggedIn ? (
             <li id="logOut" onClick={handleLogout}>
               <NavItem link="/" label="Log out" />
@@ -64,9 +67,6 @@ export const NavBar = ({ handleToggleTheme, isDarkMode }) => {
               <NavItem link="/login" label="Log in" />
             </li>
           )}
-          <li id="addBook" onClick={handleClick}>
-            <NavItem link="/addbook" label="Add Book" />
-          </li>
           <li id="toggle">
             <Toggle
               onChange={handleToggleTheme}

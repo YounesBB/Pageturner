@@ -7,10 +7,7 @@ const { userAccess } = require('../middleware/authorization')
 
 
 // Get all users
-router.get('/', userAccess, getAllUsers)
-
-// Get a user by id
-router.get('/:id', protect, userAccess, getUserById)
+router.get('/', getAllUsers)
 
 // Delete a user by id
 router.delete('/:id', protect, userAccess, deleteUserById)
@@ -22,7 +19,10 @@ router.post('/register', registerUser)
 router.post('/login', loginUser)
 
 // Get the current user
-router.get('/me', protect, userAccess, getMe)
+router.get('/me', protect, getMe)
+
+// Get a user by id
+router.get('/:id', getUserById)
 
 // router.use((err, req, res, next) => {
 //     console.error(err.stack);
