@@ -59,7 +59,7 @@ export const BookPage = () => {
   return (
     <div >
       {element}
-      <AddReview book={book} onAddReview={handleAddReview} user={user} />
+      <AddReview book={book} onAddReview={handleAddReview} user={userProfile} />
       <ReviewList reviews={reviews} />
     </div>
   )
