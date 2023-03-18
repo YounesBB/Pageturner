@@ -83,7 +83,6 @@ export const getUserProfile = async (token) => {
   try {
     const response = await axios.get(`${baseUrl}/users/me`, config);
     // console.log("SERVER RESPONSE", response)
-    // console.log('GET CURRENT USER', response.data)
     // console.log('Token in getUserProfile:', token); // Log the token here
     return response.data;
   } catch {
@@ -92,5 +91,17 @@ export const getUserProfile = async (token) => {
   return () => source.cancel("Request canceled.");
 
 };
+
+export const getUserById = async (id) => {
+  try {
+    const response = await axios.get(`${baseUrl}/users/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+
+}
+  
+
 
 

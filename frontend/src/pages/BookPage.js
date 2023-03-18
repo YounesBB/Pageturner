@@ -16,7 +16,7 @@ export const BookPage = () => {
   //const [userProfile, setUserProfile] = useState(null)
   // USER INFO
   const { user } = useContext(AuthContext)
-  console.log("USER INFO", user)
+  // console.log("USER INFO", user)
   // const [user, setUser] = useState(null)
 
 
@@ -24,12 +24,13 @@ export const BookPage = () => {
     const fetchData = async () => {
       const book = await getBookByISBN(isbn)
       setBook(book)
-      console.log("BOOKID", book._id)
+      // console.log("BOOKID", book._id)
       const reviews = await getAllReviewByBook(book._id)
-      console.log("REVIEWS", reviews)
+      // console.log("REVIEWS", reviews)
 
       const user = await getUserProfile()
-      console.log("USER IN REVIEW", user)
+      // console.log("USER IN REVIEW", user)
+      // console.log("USER IN ID", user.id)
 
 
 
@@ -47,6 +48,7 @@ export const BookPage = () => {
       rating: rating,
       comment: comment
     };
+    console.log(newReview)
     try {
       setReviews([...reviews, newReview]);
     } catch (error) {
@@ -54,13 +56,14 @@ export const BookPage = () => {
     }
   };
 
+
   const element = book ? <DisplayBook book={book} /> : null
 
   return (
     <div >
       {element}
       <AddReview book={book} user={user} onAddReview={handleAddReview} />
-      <ReviewList reviews={reviews} />
+      <ReviewList reviews={reviews} user={user} />
     </div>
   )
 }
