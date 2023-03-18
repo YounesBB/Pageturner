@@ -33,7 +33,7 @@ const useStyles = makeStyles({
 
 //Add Book component that let's us add a book to our library when clicking 'AddBook' button
 
-export const AddReview = ({ book, onAddReview, user }) => {
+export const AddReview = ({ book, user, onAddReview }) => {
     const styles = useStyles()
     const [isDialogOpen, setIsDialogOpen] = useState(false)
     const [isRatingValid, setIsRatingValid] = useState(true)

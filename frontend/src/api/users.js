@@ -82,7 +82,7 @@ export const getUserProfile = async (token) => {
   };
   try {
     const response = await axios.get(`${baseUrl}/users/me`, config);
-    // console.log("SERVER RESPONS", response)
+    // console.log("SERVER RESPONSE", response)
     // console.log('GET CURRENT USER', response.data)
     // console.log('Token in getUserProfile:', token); // Log the token here
     return response.data;
