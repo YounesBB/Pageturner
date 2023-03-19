@@ -12,6 +12,10 @@ import { useState } from "react";
 import { FluentProvider, webLightTheme, webDarkTheme } from "@fluentui/react-components";
 import { mergeStyles } from "@fluentui/react";
 import { useEffect } from "react";
+import PrivateRoute from './context/PrivateRoute';
+import { RegisterPage } from "./pages/RegisterPage";
+import ThemeContext from "./context/ThemeContext";
+
 
 const updateBackgroundColors = (isDarkMode) => {
   document.body.style.backgroundColor = isDarkMode ? "#292929" : "white";
@@ -19,12 +23,12 @@ const updateBackgroundColors = (isDarkMode) => {
   document.getElementById("root").style.backgroundColor = isDarkMode ? "#292929" : "white";
 };
 mergeStyles({
-    ":global(body,html,#root)": {
+  ":global(body,html,#root)": {
     margin: "80px 0 0", // top=80px, right=0, bottom=0, left=0
-      padding: 0,
-      height: "100vh",
-    },
-  });
+    padding: 0,
+    height: "100vh",
+  },
+});
 
 export const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -45,24 +49,27 @@ export const App = () => {
   useEffect(() => {
     updateBackgroundColors(isDarkMode);
   }, [isDarkMode]);
-  
+
 
   return (
     <>
       <div className="App_page">
         <FluentProvider theme={isDarkMode ? webDarkTheme : webLightTheme}>
-         <NavBar handleToggleTheme={handleToggleTheme} isDarkMode={isDarkMode} />
-          <AppPage>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/search" element={<SearchPage />} />
-              <Route path="/mybooks" element={<MyBooks />} />
-              <Route path="/mybooks/:isbn" element= {<BookPage/>}/>
-              <Route path="/login" element={<LogInPage />} />
-              <Route path="/addbook" element={<AddBookPage />} />
-              <Route />
-            </Routes>
-          </AppPage>
+          <NavBar handleToggleTheme={handleToggleTheme} isDarkMode={isDarkMode} />
+          <ThemeContext.Provider value={{ isDarkMode }}>
+            <AppPage>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/search" element={<SearchPage />} />
+                <Route path="/mybooks" element={<MyBooks />} />
+                <Route path="/mybooks/:isbn" element={<BookPage />} />
+                <Route path="/login" element={<LogInPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/addbook" element={<AddBookPage />} />
+                <Route />
+              </Routes>
+            </AppPage>
+          </ThemeContext.Provider>
         </FluentProvider>
       </div>
     </>
