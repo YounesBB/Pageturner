@@ -7,9 +7,8 @@ import {
   TableHeader,
   TableHeaderCell,
   TableCellLayout,
-} from "@fluentui/react-components";
-import axios from "axios";
-import { FluentProvider, webLightTheme, webDarkTheme } from "@fluentui/react-components";
+} from "@fluentui/react-components"
+import axios from "axios"
 
 const columns = [
   { columnKey: "title", label: "" },
@@ -17,8 +16,8 @@ const columns = [
 ];
 
 const TopList = () => {
-  const [books, setBooks] = useState([]);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [books, setBooks] = useState([])
+  const [isDarkMode, setIsDarkMode] = useState(false)
 
   useEffect(() => {
     const cachedBooks = JSON.parse(localStorage.getItem("nyt-books"));
@@ -36,12 +35,12 @@ const TopList = () => {
         })
         .catch((error) => {
           console.error(error);
-        });
+        })
     }
-  }, []);
+  }, [])
 
   const handleToggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
+    setIsDarkMode(!isDarkMode)
   };
 
   return (

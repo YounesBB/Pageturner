@@ -4,7 +4,7 @@ import { NavBar } from "./components/NavBar";
 import { Home } from "./pages/Home";
 import { SearchPage } from "./pages/SearchPage";
 import { BookPage } from "./pages/BookPage";
-import { MyBooks } from "./pages/MyBooks";
+import { MyRatings } from "./pages/MyRatings";
 import { LogInPage } from "./pages/LogInPage";
 import { AddBookPage } from "./pages/AddBookPage";
 import "./index.css";
@@ -56,8 +56,8 @@ export const App = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/search" element={<SearchPage />} />
-              <Route path="/mybooks" element={<MyBooks />} />
-              <Route path="/mybooks/:isbn" element= {<BookPage/>}/>
+              <Route path="/myratings" element={<MyRatings />} />
+              <Route path="/myratings/:isbn" element= {<BookPage/>}/>
               <Route path="/login" element={<LogInPage />} />
               <Route path="/addbook" element={<AddBookPage />} />
               <Route />

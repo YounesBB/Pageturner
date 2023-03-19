@@ -30,6 +30,18 @@ export const getBookById = (id) => {
       });
 }
 
+//Get a books reviewed by specific user
+export const getBooksByUser = (id) => {
+  return axios.get(`${baseUrl}/users/${id}`)
+    .then(response => {
+      console.log("Books by user", response.data)
+      return response.data;
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+
 export const getBookByISBN = (isbn) => {
     
   return axios.get(`${baseUrl}/books/isbn/${isbn}`)

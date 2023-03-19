@@ -2,14 +2,15 @@ import { useState, useEffect } from "react";
 import { BookList } from "../components/BookList";
 import { getBooks } from "../api/books";
 import { AddBook } from "../components/AddBook";
+import { getBooksByUser } from "../api/booksAPI";
 
-export const MyBooks = () => {
+export const MyRatings = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const booksData = await getBooks();
+        const booksData = await getBooksByUser();
         setBooks(booksData);
       } catch (error) {
         console.error(error);
