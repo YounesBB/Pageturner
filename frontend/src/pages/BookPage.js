@@ -51,6 +51,7 @@ export const BookPage = () => {
     console.log(newReview)
     try {
       setReviews([...reviews, newReview]);
+      window.location.reload(true);
     } catch (error) {
       console.error(error);
     }
