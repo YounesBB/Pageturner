@@ -17,14 +17,15 @@ const protect = asyncHandler(async (req, res, next) => {
         } catch (error) {
             console.log(error)
             res.status(401)
-            throw new Error('Not authorized, token failed')
+            res.send('Not authorized, token failed') // Change this line
         }
     }
 
     if (!token) {
         res.status(401)
-        throw new Error('Not authorized, no token')
+        res.send('Not authorized, no token') // Change this line
     }
 })
+
 
 module.exports = { protect }
