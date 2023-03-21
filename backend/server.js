@@ -27,7 +27,14 @@ app.use((req, res, next) => {
 app.use('/api/author', authorRoutes)
 app.use('/api/books', bookRoutes)
 app.use('/api/users', userRoutes)
-app.use('/api/review', reviewRoutes) 
+app.use('/api/review', reviewRoutes)
+
+
+// ERROR HANDLING MIDDLEWARE
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: 'Internal server error' });
+});
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)

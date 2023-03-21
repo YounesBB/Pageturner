@@ -21,9 +21,11 @@ const userSchema = mongoose.Schema(
             ref: 'Book',
             required: false
         }],
-        isAdmin: {
-            type: Boolean
-        }
+        role: {
+            type: String,
+            enum: ['user', 'admin'],
+            default: 'user'
+        },
         // reviews: [{
         //     type: mongoose.Schema.Types.ObjectId,
         //     ref: 'Review',

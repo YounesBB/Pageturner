@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { newBook } from "../api/books"
 import { MessageBar, MessageBarType } from '@fluentui/react';
 import { css } from '@fluentui/react';
@@ -18,7 +18,8 @@ import {
 import { BookAdd24Regular } from "@fluentui/react-icons"
 import { CompoundButton } from "@fluentui/react-components"
 import { createReview } from "../api/reviews"
-
+import { AuthContext } from "../context/AuthProvider"
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles({
     content: {
@@ -31,13 +32,22 @@ const useStyles = makeStyles({
 
 //Add Book component that let's us add a book to our library when clicking 'AddBook' button
 
-export const AddReview = ({ book, onAddReview }) => {
+export const AddReview = ({ book, onAddReview, user }) => {
     const styles = useStyles()
     const [isDialogOpen, setIsDialogOpen] = useState(false)
     const [isRatingValid, setIsRatingValid] = useState(true)
     const [isCommentValid, setIsCommentValid] = useState(true)
     const [rating, setRating] = useState("")
     const [comment, setComment] = useState("")
+
+
+    // TESTING AUTHCONTEXT
+    const { isLoggedIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    if (!isLoggedIn) {
+        navigate("/");
+    }
 
     // function for closing dialog. Called when 'Cancel' button is clicked
     const handleDismiss = () => {
@@ -64,7 +74,7 @@ export const AddReview = ({ book, onAddReview }) => {
         return value.trim().split(" ").length > 0;
     };
 
-    const handleSave = async(ev) => {
+    const handleSave = async (ev) => {
         ev.preventDefault()
         if ((!rating) && !comment && !validateInput(comment)) {
             setIsRatingValid(false);
@@ -79,9 +89,10 @@ export const AddReview = ({ book, onAddReview }) => {
             setIsCommentValid(false)
             return;
         }
-        onAddReview(book._id, "640726ca3f24fb931abd00b9", rating, comment)
+        console.log("user id", user.id)
+        onAddReview(book._id, user.id, rating, comment)
         setIsDialogOpen(false)
-        createReview(book._id, "640726ca3f24fb931abd00b9", rating, comment)
+        createReview(book._id, user.id, rating, comment)
             .then((data) => {
                 // update the books state with the new book
                 // call the onAddBook function to update the parent component's state
