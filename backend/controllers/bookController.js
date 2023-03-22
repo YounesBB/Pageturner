@@ -166,19 +166,50 @@ const getBookByISBN = asynHandler(async (req, res) => {
 })
 
 // @desc    Get all books reviewed by a specific user.
-// @param    user id
-// @return   array of books
+// @param   user id
+// @return  array of books
 // @route   GET /books/user/:id
 // @access  Public
 const getBooksByUser = asynHandler(async (req, res) => {
+  // Get the user id from the request parameters
   const userId = req.params.id;
 
+  // Find all reviews written by the user
   const reviews = await Review.find({ user: userId });
-  const bookIds = reviews.map(review => review.book);
-  const books = await Book.find({ _id: { $in: bookIds } });
 
-  res.json(books);
+  // Extract the book ids from the reviews
+  const bookIds = reviews.map(review => review.book);
+
+  // Find all books with ids that match the book ids from the reviews
+  const books = await Book.find({ _id: { $in: bookIds } }).sort({ createdAt: -1 })
+    // Populate the 'author' field with the 'name' field of the author
+    .populate('author', 'name')
+    .exec();
+
+    // Map through each book and replace author id with author name
+    const booksWithAuthorName = books.map(book => {
+      return {
+        _id: book._id,
+        title: book.title,
+        author: book.author?.name, // get the name field of the author object
+        releaseYear: book.releaseYear,
+        genre: book.genre,
+        description: book.description,
+        pages: book.pages,
+        coverImage: book.coverImage,
+        isbn: book.isbn,
+        ratingSum: book.ratingSum,
+        ratingCount: book.ratingCount,
+        createdAt: book.createdAt,
+        updatedAt: book.updatedAt,
+        __v: book.__v
+      }
+    })
+
+  // Send the books array as a JSON response
+  res.json(booksWithAuthorName);
 });
+
 
 
 
