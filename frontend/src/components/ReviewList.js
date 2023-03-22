@@ -1,8 +1,31 @@
 
 import { Star24Filled } from '@fluentui/react-icons'
+import {useContext, useEffect} from 'react'
+import { getUserProfile } from "../api/users";
+import AuthContext from "../context/AuthProvider";
 
-export const ReviewList = ({ reviews, user }) => {
+export const ReviewList = ({ reviews }) => {
 
+    const { user, setUser } = useContext(AuthContext)
+
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const user = await getUserProfile()
+                setUser(user)
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        fetchUser()
+    }, [])
+
+    if (user) {
+        const myReviews = reviews.filter(r => r.user.email === user.email)
+        const otherReviews = reviews.filter(r => r.user.email !== user.email)
+        reviews = [...myReviews, ...otherReviews]
+    }
     
 
     return (
