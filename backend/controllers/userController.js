@@ -3,21 +3,22 @@ const Author = require('../models/Author');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken'); // Used to create, sign, and verify tokens
 const asyncHandler = require('express-async-handler');
+const validator = require('validator');
 
 // @desc    Get all users
 // @route   GET /users
 // @access  Private/Admin
 const getAllUsers = asyncHandler(async (req, res) => {
     const users = await User.find({}).exec();
-  
+
     // If no users found
     if (!users?.length) {
-      res.status(400);
-      throw new Error('No users found');
+        res.status(400);
+        throw new Error('No users found');
     }
-  
+
     res.status(200).json(users);
-  });
+});
 
 // @desc    Get a user by id
 // @route   GET /users/:id
@@ -69,6 +70,18 @@ const registerUser = asyncHandler(async (req, res) => {
     if (!name || !email || !password) {
         return res.status(400).json({ message: 'Please fill out all fields' })
     }
+    if (!validator.isEmail(email)) {
+        return res.status(400).json({ message: 'Invalid email format' });
+    }
+
+    if (password.length < 6) {
+        return res.status(400).json({ message: 'Password must be at least 6 characters long' });
+    }
+
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+    if (!passwordRegex.test(password)) {
+        return res.status(400).json({ message: 'Password must contain at least one number and one letter' });
+    }
 
     const userExists = await User.findOne({ email }).exec()
 
@@ -101,6 +114,13 @@ const registerUser = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body
     // Find user by email
+    if (!email || !password) {
+        return res.status(400).json({ message: 'Please enter both email and password' });
+    }
+    if (!validator.isEmail(email)) {
+        return res.status(400).json({ message: 'Invalid email format' });
+    }
+
     const user = await User.findOne({ email })
 
     if (user && (user.password === password)) {
@@ -119,19 +139,25 @@ const loginUser = asyncHandler(async (req, res) => {
 // @route   GET /users/me
 // @access  Private
 const getMe = asyncHandler(async (req, res) => {
-    const { _id, name, email } = await User.findById(req.user.id)
+    //const { _id, name, email } = await User.findById(req.user.id)
+    const user = req.user;
 
-    res.status(200).json({
-        id: _id,
-        name,
-        email
-    })
+    console.log("BACKEND USER", user)
+    if (user) {
+        res.status(200).json({
+            id: user._id,
+            name: user.name,
+            email: user.email
+        })
+    } else {
+        res.status(400).json({ message: 'User not found' })
+    }
 })
 
 // Generate JWT
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
-        expiresIn: '30d'
+        expiresIn: '24h'
     })
 }
 

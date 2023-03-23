@@ -112,9 +112,9 @@ const deleteReview = asyncHandler(async (req, res) => {
 
 
 module.exports = {
-  createReview, 
+  createReview,
   getAllReviewByBook,
-  getAllReviews, 
+  getAllReviews,
   deleteReview
 }
 

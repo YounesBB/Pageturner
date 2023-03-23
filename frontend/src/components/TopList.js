@@ -7,83 +7,47 @@ import {
   TableHeader,
   TableHeaderCell,
   TableCellLayout,
-} from "@fluentui/react-components";
-import axios from "axios";
-import { FluentProvider, webLightTheme, webDarkTheme } from "@fluentui/react-components";
+} from "@fluentui/react-components"
+import axios from "axios"
 
-const columns = [
-  { columnKey: "title", label: "" },
-  { columnKey: "author", label: "" },
-];
 
-const TopList = () => {
-  const [books, setBooks] = useState([]);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+
+
+export const TopList = () => {
+  const [topBooks, setTopBooks] = useState([]);
 
   useEffect(() => {
-    const cachedBooks = JSON.parse(localStorage.getItem("nyt-books"));
-    if (cachedBooks) {
-      setBooks(cachedBooks);
-    } else {
-      axios
-        .get(
-          "https://api.nytimes.com/svc/books/v3/lists/hardcover-fiction.json?api-key=XrCIx087EJ5sGfUCIoaM1v5dtGtGxG7H"
-        )
-        .then((response) => {
-          const booksData = response.data.results.books;
-          localStorage.setItem("nyt-books", JSON.stringify(booksData));
-          setBooks(booksData);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
+    const fetchData = async () => {
+      const books = await getBooks();
+      const sortedBooks = books
+        .map((book) => ({
+          ...book,
+          averageRating: book.ratingCount > 0 ? book.ratingSum / book.ratingCount : 0,
+        }))
+        .sort((a, b) => b.averageRating - a.averageRating)
+        .slice(0, 10);
+      setTopBooks(sortedBooks);
+    };
+    fetchData();
   }, []);
 
-  const handleToggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
   return (
-    <div>
-      <h1 id="HeaderNYT">New York Times Bestseller List</h1>
-      <div className="page">
-        <Table arial-label="Default table">
-          <TableHeader>
-            <TableRow
-              style={{
-                borderBottom: "2px solid rgba(0, 128, 0, 0.3)",
-              }}
-            >
-              {columns.map((column) => (
-                <TableHeaderCell key={column.columnKey}>
-                  <TableCellLayout media={column.icon}>
-                    {column.label}
-                  </TableCellLayout>
-                </TableHeaderCell>
-              ))}
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {books.map((book, index) => (
-              <TableRow
-                key={`${index}-${book.title}`}
-                style={{
-                  borderBottom: "1px solid rgba(0, 128, 0, 0.2)",
-                }}
-              >
-                <TableCell>
-                  <strong>{index + 1}.</strong> {book.title}
-                </TableCell>
-                <TableCell>{book.author}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
+    <>
+    <div style={{ textAlign: "center" }}>
+      <h1>Top 10 Books</h1>
     </div>
+      <div className="top-list">
+        {topBooks.map((book) => (
+          <DisplayBookBig key={book._id} book={book} />
+        ))}
+      </div>
+    </>
   );
 };
 
 export default TopList;
+
+
+
+
 
