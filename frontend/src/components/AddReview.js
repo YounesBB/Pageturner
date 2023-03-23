@@ -56,11 +56,11 @@ export const AddReview = ({ book, onAddReview, user }) => {
 
     function handleRatingInput(event) {
         const inputValue = event.target.value;
-        if (inputValue <= 10) {
-            setIsRatingValid(true);
-            setRating(inputValue)
-        } else {
+        if (inputValue < 1 || inputValue > 10) {
             setIsRatingValid(false);
+        } else {
+            setIsRatingValid(true);
+            setRating(inputValue);
         }
     }
 
