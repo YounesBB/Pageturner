@@ -99,9 +99,8 @@ export const getUserById = async (id) => {
   } catch (error) {
     console.error(error);
   }
-
 }
-  
+
 
 
 

@@ -563,6 +563,11 @@ textarea {
   text-align: center;
 }
 
+.no-user-review {
+
+  text-align: right;
+}
+
 button[type="addreview"]:hover {
   background-color: rgba(0, 128, 0, 0.7);
   font-family: "Nunito Sans", sans-serif;

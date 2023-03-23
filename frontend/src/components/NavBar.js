@@ -50,9 +50,9 @@ export const NavBar = ({ handleToggleTheme, isDarkMode }) => {
               />
             </li>
           </div>
-          <li id="myBooks">
+          <li id="myRatings">
             <div onClick={handleClick}>
-              <NavItem link="/mybooks" label="My Ratings" />
+              <NavItem link="/myratings" label="My Ratings" />
             </div>
           </li>
           <li id="addBook" onClick={handleClick}>

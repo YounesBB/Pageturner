@@ -63,7 +63,11 @@ export const BookPage = () => {
   return (
     <div >
       {element}
-      <AddReview book={book} user={user} onAddReview={handleAddReview} />
+      {user ? (
+        <AddReview book={book} user={user} onAddReview={handleAddReview} />
+      ) : (
+        <p className="no-user-review">Please log in to add a review</p>
+      )}
       <ReviewList reviews={reviews} user={user} />
     </div>
   )

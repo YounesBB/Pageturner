@@ -65,7 +65,7 @@ export const AuthContext = createContext({
 export const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
     const [user, setUser] = useState(null);
-    const [loginCounter, setLoginCounter] = useState(0); // DEBUGGING
+    //const [loginCounter, setLoginCounter] = useState(0); // DEBUGGING
 
     useEffect(() => {
         if (isLoggedIn) {
@@ -75,7 +75,7 @@ export const AuthProvider = ({ children }) => {
                 try {
                     const userData = await getUserProfile(token);
                     setUser(userData);
-                    console.log("USERDATA", userData);
+                    console.log("USERDATA IN AUTH", userData);
                 } catch (error) {
                     console.log(error);
                 }
@@ -85,7 +85,7 @@ export const AuthProvider = ({ children }) => {
                 source.cancel("Request canceled");
             };
         }
-    }, [isLoggedIn, loginCounter]);
+    }, [isLoggedIn]);
 
     const loginHandler = (token) => {
         if (!token) {
@@ -94,7 +94,7 @@ export const AuthProvider = ({ children }) => {
         console.log("Token in loginHandler:", token); // Log the token here
         localStorage.setItem("token", token);
         setIsLoggedIn(true);
-        setLoginCounter(prevCounter => prevCounter + 1);
+        //setLoginCounter(prevCounter => prevCounter + 1);
     };
 
     const logoutHandler = () => {
