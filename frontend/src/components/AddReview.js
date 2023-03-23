@@ -100,7 +100,7 @@ export const AddReview = ({ book, onAddReview, user }) => {
             .catch((error) => {
                 console.error(error)
             })
-        window.location.reload()
+        window.location.reload(true)
 
     }
 

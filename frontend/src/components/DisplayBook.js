@@ -8,7 +8,7 @@ export const DisplayBook = ({ book }) => {
 
     const ratingCount = book.ratingCount;
     const averageRating = ratingCount > 0
-      ? `${(book.ratingSum / ratingCount).toFixed(1)} ( ${ratingCount} ratings)`
+      ? `${(book.ratingSum / ratingCount).toFixed(1)} (${ratingCount} ratings)`
       : "no reviews";
 
     return (
