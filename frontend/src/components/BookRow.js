@@ -18,7 +18,9 @@ export const BookRow = ({ book, onBookClick }) => {
             <TableCell>{book.title}</TableCell>
             <TableCell>{book.author}</TableCell>
             <TableCell>{book.releaseYear}</TableCell>
-            <TableCell> {<Star24Filled style={{ color: "f3ce13" }} />}        {book.ratingCount > 0 ? (book.ratingSum / book.ratingCount).toFixed(1) : 0} / 10</TableCell>
+            <TableCell> {<Star24Filled style={{ color: "f3ce13" }} />}     {book.ratingCount > 0 
+    ? `${(book.ratingSum / book.ratingCount).toFixed(1)} / 10` 
+    : "No reviews"}</TableCell>
         </TableRow>
     )
 }
