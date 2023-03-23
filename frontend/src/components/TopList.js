@@ -9,6 +9,8 @@ import {
   TableCellLayout,
 } from "@fluentui/react-components"
 import axios from "axios"
+import { getBooks } from "../api/books"
+import { DisplayBookBig } from "./DisplayBookBig"
 
 
 
@@ -33,9 +35,9 @@ export const TopList = () => {
 
   return (
     <>
-    <div style={{ textAlign: "center" }}>
-      <h1>Top 10 Books</h1>
-    </div>
+      <div style={{ textAlign: "center" }}>
+        <h1>Top 10 Books</h1>
+      </div>
       <div className="top-list">
         {topBooks.map((book) => (
           <DisplayBookBig key={book._id} book={book} />
